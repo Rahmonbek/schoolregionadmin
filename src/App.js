@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Navbar from './pages/Navbar'
-import 'antd/dist/antd.css';
-export default class componentName extends Component {
+import './App.css'
+import Main from './pages/Main'
+export default class App extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+       <Main/>
       </div>
     )
   }

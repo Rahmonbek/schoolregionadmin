@@ -129,10 +129,10 @@ export default class Main extends Component {
               <div className="site-layout-background" style={{ padding: 24, height: "540", overflowY: "auto", overflowX: "hidden" }}>
                 <BrowserRouter>
                   <Switch>
-                    <Route path="/yangiliklar">
+                    <Route path="main/yangiliklar">
                       <Yangilik />
                     </Route>
-                    <Route path="/tadbirlar">
+                    <Route path="main/tadbirlar">
                       <Tadbirlar />
                     </Route>
                   </Switch>

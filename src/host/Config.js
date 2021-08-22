@@ -56,3 +56,11 @@ export const getStaff = () => {
   };
   return httpRequest(config);
 };
+
+export const getRegion = () => {
+  var config = {
+    url: `${url}/region`,
+    method: "get",
+  };
+  return httpRequest(config);
+};

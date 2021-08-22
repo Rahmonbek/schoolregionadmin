@@ -16,6 +16,7 @@ export default class Verify extends Component {
     info: false,
     viloyat: [],
     tuman: null,
+    region: false,
   };
   login = (e) => {
     e.preventDefault();
@@ -92,7 +93,7 @@ export default class Verify extends Component {
   };
 
   render() {
-    return GLOBAL.id === null ? (
+    return this.state.region === false ? (
       <div className={style.formDiv}>
         {this.state.info ? (
           <div className={style.loginBox} style={{ width: "600px" }}>
@@ -203,7 +204,7 @@ export default class Verify extends Component {
         )}
       </div>
     ) : (
-      <Redirect to={"/main"} />
+      <Redirect to="/main" />
     );
   }
 }

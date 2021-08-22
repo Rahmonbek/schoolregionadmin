@@ -57,28 +57,14 @@ onChange=(value)=>{
         tuman:value
     })
 }
-  componentDidMount(){
-    axios.get(`${url}/region/`).then(res=>{
-        var a=res.data.sort(function(a, b) {
-            var textA = a.address;
-            var textB = b.address;
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        })
-        this.setState({viloyat:a})       
-        }).catch(err=>{console.log(err)})
-  }
   Maktab = (e)=>{
     e.preventDefault()
-    const formData = new FormData(e.target),
+    const formData = new FormData(e.target)
+formData.append("admin", this.state.id)
+          var formDataObj = Object.fromEntries(formData.entries())
+          formDataObj.admin=Number(formDataObj.admin)
 
-          formDataObj = Object.fromEntries(formData.entries())
-          formDataObj.school_number=Number(formDataObj.school_number)
-          formDataObj.region=Number(formDataObj.region)
-          console.log(e.target.value, formDataObj, this.state.id, this.state.tuman)
-          axios.post(`${url}/school/`, formDataObj).then(res=>{
-              axios.put(`${url}/school/`, { admin:this.state.id}).then(res=>{message.success("Ma'lumot kiritldi")}).catch(err=>{
-                message.error('Ma\'lumot kiritlmadi')
-              })
+          axios.post(`${url}/region/`, formDataObj).then(res=>{
         window.localStorage.setItem('token', res.data.token)
   
     }).catch(err=>{message.error('Ma\'lumot kiritlmadi')})
@@ -90,28 +76,33 @@ onChange=(value)=>{
                 {
                 this.state.info?
                 <div className={style.loginBox} style={{width:'600px'}}>
-                <h2>Maktabni malumotlari</h2>
+                <h2>Tumanning malumotlari</h2>
                 <Form  className={style.From}
                 onSubmit={this.Maktab}>
-                  <Form.Group className={style.userBox}>
-                    <Form.Control style={{outline:'none'}} className={style.Forminput}  type="number" name="school_number"required={true}/>
-                    <Form.Label className={style.formLabel} >Raqami</Form.Label>
-                  
-                  </Form.Group>
                   
                   <Form.Group className={style.userBox}>
-                    <Form.Control style={{outline:'none'}} defaultValue="" className={style.Forminput}  type="text" name="name"  required={true}/>
-                    <Form.Label className={style.formLabel} >Nomi</Form.Label>
+                    <Form.Control style={{outline:'none'}} defaultValue="" className={style.Forminput}  type="text" name="region_name"  required={true}/>
+                    <Form.Label className={style.formLabel} >Tumanning nomi</Form.Label>
                   
                     <Form.Text className="text-muted">
-     Maktab nomini to'liq yozing. Agar maktabni maxsus nomi bo'lmasa bu joyni bo'sh qoldiring.
+     Tuman nomini to'liq yozing.
     </Form.Text>
                   </Form.Group>
                   <Form.Group className={style.userBox}>
-                  <select name="region" onChange={(e)=>{this.onChange(e.target.value)}} className={style.Forminput}>
-  {this.state.viloyat.length!==0?this.state.viloyat.map(item=>{
-      return( <option value={item.id}>{item.address} {item.region_name} tumani</option>)
-  }):''}
+                  <select name="address" onChange={(e)=>{this.onChange(e.target.value)}} className={style.Forminput}>
+ 
+ <option value="Toshkent shahri">Toshkent shahri</option>
+ <option value="Toshkent viloyati">Toshkent viloyati</option>
+ <option value="Buxoro viloyati">Buxoro viloyati</option>
+ <option value="Xorazm viloyati">Xorazm viloyati</option>
+ <option value="Andijon viloyati">Andijon viloyati</option>
+ <option value="Namangan viloyati">Namangan viloyati</option>
+ <option value="Qashqadaryo viloyati">Qashqadaryo viloyati</option>
+ <option value="Surxondaryo viloyati">Surxondaryo viloyati</option>
+ <option value="Farg'ona viloyati">Farg'ona viloyati</option>
+ <option value="Sirdaryo viloyati">Sirdaryo viloyati</option>
+ <option value="Navoiy viloyati">Navoiy viloyati</option>
+ <option value="Qoraqalpog'iston Respublikasi">Qoraqalpog'iston Respublikasi</option>
   
  
 </select>

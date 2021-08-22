@@ -40,3 +40,19 @@ export const getSchools = () => {
   };
   return httpRequest(config);
 };
+
+export const getStaffs = () => {
+  var config = {
+    url: `${url}/staff`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+
+export const getStaff = () => {
+  var config = {
+    url: `${url}/staff/${GLOBAL.id}`,
+    method: "get",
+  };
+  return httpRequest(config);
+};

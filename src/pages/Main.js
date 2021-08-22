@@ -7,6 +7,7 @@ import style from "../css/Navbar.module.css";
 import Yangilik from "./Yangilik";
 import Tadbirlar from "./Tadbirlar";
 import { getSchools } from "../host/Config";
+import Rahbariyat from './Rahbariyat'
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class Main extends Component {
@@ -129,6 +130,9 @@ export default class Main extends Component {
               <div className="site-layout-background" style={{ padding: 24, height: "540", overflowY: "auto", overflowX: "hidden" }}>
                 <BrowserRouter>
                   <Switch>
+                  <Route exact path="/main/rahbariyat">
+                      <Rahbariyat />
+                    </Route>
                     <Route exact path="/main/yangiliklar">
                       <Yangilik />
                     </Route>

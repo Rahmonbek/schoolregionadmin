@@ -4,7 +4,6 @@ import style from "../css/Navbar.module.css";
 import { Menu } from "antd";
 import { UserOutlined, BookOutlined, RocketOutlined, BellOutlined } from "@ant-design/icons";
 
-const { SubMenu } = Menu;
 export default class Navbar extends Component {
   state = {
     current: "rahbariyat",

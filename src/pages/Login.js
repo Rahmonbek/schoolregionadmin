@@ -45,7 +45,6 @@ export default class Login extends Component {
     return this.state.login === false ? (
       <div className={style.formDiv}>
         <div className={style.loginBox}>
-          {console.log(GLOBAL.id)}
           <h2>Tizimga kirish</h2>
           <Form className={style.From} onSubmit={this.loginVeb}>
             <Form.Group className={style.userBox}>

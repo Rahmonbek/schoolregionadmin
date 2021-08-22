@@ -1,34 +1,37 @@
 import React, { Component } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { PieChartOutlined } from "@ant-design/icons";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import style from "../css/Navbar.module.css";
 import Yangilik from "./Yangilik";
 import Tadbirlar from "./Tadbirlar";
 import { getSchools } from "../host/Config";
 import Rahbariyat from './Rahbariyat'
+import MaktabId from "./maktabId";
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class Main extends Component {
   state = {
     collapsed: false,
-    maktab: 0,
+    maktab: [],
+    maktabId:0
   };
   getSchoolsAll = () => {
-    getSchools()
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    getSchools().then((res) => 
+    this.setState({maktab:res.data}) 
+    ).catch((err) => console.log(err));
   };
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   };
-  maktab = (a) => {
+  getId=(val)=>{
     this.setState({
-      maktab: a,
-    });
-  };
+      maktabId:val
+    })
+    console.log(this.state.maktabId)
+  }
   componentDidMount() {
     this.getSchoolsAll();
   }
@@ -40,86 +43,25 @@ export default class Main extends Component {
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
               <Menu.Item
-                onClick={() => {
-                  this.maktab(0);
-                }}
+                    onClick={()=>this.getId(0)}
                 key="0"
                 icon={<PieChartOutlined />}
               >
                 Hammasi
               </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(1);
-                }}
-                key="1"
+              {
+                this.state.maktab.map((item,key)=>{
+                  return(
+                    <Menu.Item
+                    onClick={()=>this.getId(`${item.school_number}`)}
+                key={key+1}
                 icon={<PieChartOutlined />}
-              >
-                1- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(2);
-                }}
-                key="2"
-                icon={<PieChartOutlined />}
-              >
-                2- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(3);
-                }}
-                key="3"
-                icon={<PieChartOutlined />}
-              >
-                3- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(4);
-                }}
-                key="4"
-                icon={<PieChartOutlined />}
-              >
-                4- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(5);
-                }}
-                key="5"
-                icon={<PieChartOutlined />}
-              >
-                5- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(6);
-                }}
-                key="6"
-                icon={<PieChartOutlined />}
-              >
-                6- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(7);
-                }}
-                key="7"
-                icon={<PieChartOutlined />}
-              >
-                7- maktab
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => {
-                  this.maktab(8);
-                }}
-                key="8"
-                icon={<PieChartOutlined />}
-              >
-                8- maktab
-              </Menu.Item>
+              ><Link to={`/${window.location.href.slice(window.location.href.indexOf('main'), window.location.href.lastIndexOf('/'))}/${item.id}`}>
+                {item.school_number}-maktab
+                </Link></Menu.Item>
+                  )
+                })
+              }
             </Menu>
           </Sider>
           <Layout className="site-layout">
@@ -130,14 +72,17 @@ export default class Main extends Component {
               <div className="site-layout-background" style={{ padding: 24, height: "540", overflowY: "auto", overflowX: "hidden" }}>
                 <BrowserRouter>
                   <Switch>
-                  <Route exact path="/main/rahbariyat">
+                  <Route exact path="/main/rahbariyat/:id">
                       <Rahbariyat />
                     </Route>
-                    <Route exact path="/main/yangiliklar">
+                    <Route exact path="/main/yangiliklar/:id">
                       <Yangilik />
                     </Route>
-                    <Route exact path="/main/tadbirlar">
+                    <Route exact path="/main/tadbirlar/:id">
                       <Tadbirlar />
+                    </Route>
+                    <Route exact path="/main/alochilar/:id">
+                      <MaktabId />
                     </Route>
                   </Switch>
                 </BrowserRouter>
@@ -150,9 +95,9 @@ export default class Main extends Component {
                   </a>
                 </Footer>
               </div>
-              {this.state.maktab !== 0 ? (
+              {this.state.maktabId !== 0 ? (
                 <div className={style.maktab}>
-                  <h3>{this.state.maktab} - maktab</h3>
+                  <h3>{this.state.maktabId} - maktab</h3>
                 </div>
               ) : (
                 <div className={style.maktab}>

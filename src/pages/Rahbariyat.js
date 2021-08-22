@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { getStaff, getStaffs } from "../host/Config";
 import GLOBAL from "../host/Global";
-
 export default class Rahbariyat extends Component {
     state = {
         datas: [],
@@ -37,7 +36,7 @@ export default class Rahbariyat extends Component {
               ? this.state.datas.map((item, key) => {
                   return (
                     <Col lg={3} md={4} sm={6} xs={12}>
-                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }}>
+                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"}}>
                         <Card.Img variant="top" src={item.image} />
                         <Card.Body>
                           <h6>

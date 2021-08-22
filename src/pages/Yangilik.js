@@ -8,6 +8,7 @@ export default class Yangilik extends Component {
     datas: [],
     data: {},
     show: false,
+    id:window.location.href.slice(window.location.href.lastIndexOf('/')+1)
   };
   getNews = () => {
     if (GLOBAL.id !== null)
@@ -26,12 +27,16 @@ export default class Yangilik extends Component {
     this.setState({ show: false, data: {} });
   };
   componentDidMount() {
+    // this.setState({})
     this.getNews();
+    console.log(this.state.id)
   }
   render() {
+    
     return (
       <div>
         <Container fluid>
+    
           <Row>
             {this.state.datas !== []
               ? this.state.datas.map((item, key) => {

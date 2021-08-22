@@ -30,7 +30,6 @@ export default class Main extends Component {
     this.setState({
       maktabId:val
     })
-    console.log(this.state.maktabId)
   }
   componentDidMount() {
     this.getSchoolsAll();
@@ -47,7 +46,9 @@ export default class Main extends Component {
                 key="0"
                 icon={<PieChartOutlined />}
               >
+                <Link to={`/${window.location.href.slice(window.location.href.indexOf('main'), window.location.href.lastIndexOf('/'))}/all`}>
                 Hammasi
+                </Link>
               </Menu.Item>
               {
                 this.state.maktab.map((item,key)=>{

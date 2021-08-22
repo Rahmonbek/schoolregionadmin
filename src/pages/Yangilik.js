@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { getNew, getNews } from "../host/Config";
 import GLOBAL from "../host/Global";
-
+import { FaRegCalendarAlt, FaHistory} from "react-icons/fa";
+import { HiLocationMarker} from "react-icons/hi";
 export default class Yangilik extends Component {
   state = {
     datas: [],
@@ -42,15 +43,23 @@ export default class Yangilik extends Component {
               ? this.state.datas.map((item, key) => {
                   return (
                     <Col lg={3} md={4} sm={6} xs={12}>
-                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }}>
-                        <Card.Img variant="top" src={item.image} />
+                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",height:'500px' }}>
+                        <Card.Img variant="top" src={item.image} style={{width:'100%', height:'250px'}}/>
+                        {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                         <Card.Body>
-                          <h6>
+                          <h6 style={{margin:'5px 0px 20px 0px', fontSize:'16px', borderBottom:'1px solid #ccc', height:'50px'}}>
                             <b>{item.title}</b>
                           </h6>
-                          <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p>
-                          <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
-                            Ko'proq o'qish
+                          
+                          <div style={{margin:'10px 0px', fontSize:'15px'}}>
+                          <span style={{marginRight:'10px', }}><HiLocationMarker/></span><span >{item.school}-maktab</span>
+                          </div>
+                          <div style={{margin:'10px 0px', fontSize:'15px'}}>
+                          <span style={{marginRight:'10px'}}><FaHistory/></span><span >{item.published_time}</span>
+                          </div>
+                          {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
+                          <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px",  }}>
+                            Batafsil
                           </Button>
                         </Card.Body>
                       </Card>

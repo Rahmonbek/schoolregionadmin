@@ -1,4 +1,4 @@
 module.exports = {
   id: null,
-  region: null,
+  region: 2,
 };

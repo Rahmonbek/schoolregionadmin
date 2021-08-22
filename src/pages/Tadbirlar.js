@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
-import { getNew, getNews } from "../host/Config";
+import { getEvent, getEvents } from "../host/Config";
 import GLOBAL from "../host/Global";
 
-export default class Yangilik extends Component {
+export default class Tadbirlar extends Component {
   state = {
     datas: [],
     data: {},
     show: false,
   };
-  getNews = () => {
+  getEvents = () => {
     if (GLOBAL.id !== null)
-      getNew()
+      getEvent()
         .then((res) => this.setState({ datas: res.data }))
         .catch(() => console.log("Ma'lumot yuklanmadi"));
     else
-      getNews()
+      getEvents()
         .then((res) => this.setState({ datas: res.data }))
         .catch(() => console.log("Ma'lumot yuklanmadi"));
   };
@@ -26,7 +26,7 @@ export default class Yangilik extends Component {
     this.setState({ show: false, data: {} });
   };
   componentDidMount() {
-    this.getNews();
+    this.getEvents();
   }
   render() {
     return (
@@ -57,10 +57,10 @@ export default class Yangilik extends Component {
         </Container>
         <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">Yangilik sarlavhasi: {this.state.data.title}</Modal.Title>
+            <Modal.Title id="contained-modal-title-vcenter">Tadbir sarlavhasi: {this.state.data.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Yangilik matni: {this.state.data.text}</p>
+            <p>Tadbir matni: {this.state.data.text}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => this.closeModal()}>Yopish</Button>

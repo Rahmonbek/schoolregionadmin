@@ -1,7 +1,8 @@
-export const url="http://maktab2.herokuapp.com"
+import axios from "axios";
+export const url = "http://maktab2.herokuapp.com";
 
-export const httpRequest=(config)=>{
-    return(axios({
-        ...config
-    }))
-}
+export const httpRequest = (config) => {
+  return axios({
+    ...config,
+  });
+};

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { getEvent, getEvents } from "../host/Config";
 import GLOBAL from "../host/Global";
+import { FaRegCalendarAlt, FaHistory} from "react-icons/fa";
+
 
 export default class Tadbirlar extends Component {
   state = {
@@ -37,13 +39,17 @@ export default class Tadbirlar extends Component {
               ? this.state.datas.map((item, key) => {
                   return (
                     <Col lg={3} md={4} sm={6} xs={12}>
-                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }}>
+                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",height:'450px' }}>
                         <Card.Img variant="top" src={item.image} />
+                        {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                         <Card.Body>
                           <h6>
                             <b>{item.title}</b>
                           </h6>
-                          <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p>
+                          <p>{item.address}</p>
+                          <FaRegCalendarAlt/><p>{item.data}</p>
+                          <p>{item.time}</p>
+                          {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
                           <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
                             Ko'proq o'qish
                           </Button>

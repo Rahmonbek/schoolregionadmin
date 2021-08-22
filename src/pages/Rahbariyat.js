@@ -7,6 +7,7 @@ export default class Rahbariyat extends Component {
         datas: [],
         data: {},
         show: false,
+        id:window.location.href.slice(window.location.href.lastIndexOf('/')+1)
       };
       getStaffS = () => {
         if (GLOBAL.id !== null)
@@ -35,7 +36,8 @@ export default class Rahbariyat extends Component {
             {this.state.datas !== []
               ? this.state.datas.map((item, key) => {
                   return (
-                    <Col lg={3} md={4} sm={6} xs={12}>
+                    (parseInt(window.location.href.slice(window.location.href.lastIndexOf('/')+1))===parseInt(item.school))?(
+                      <Col lg={3} md={4} sm={6} xs={12}>
                       <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"}}>
                         <Card.Img variant="top" src={item.image} />
                         <Card.Body>
@@ -51,6 +53,31 @@ export default class Rahbariyat extends Component {
                         </Card.Body>
                       </Card>
                     </Col>
+                    ):''
+                  );
+                })
+              : ""}
+               {this.state.datas !== []
+              ? this.state.datas.map((item, key) => {
+                  return (
+                    ((window.location.href.slice(window.location.href.lastIndexOf('/')+1))==='all')?(
+                      <Col lg={3} md={4} sm={6} xs={12}>
+                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"}}>
+                        <Card.Img variant="top" src={item.image} />
+                        <Card.Body>
+                          <h6>
+                            <p>{item.full_name}</p>
+                            <p>{item.position }</p>
+                            <p>{item.phone}</p>
+                            <p>{item.school}-maktab</p>
+                          </h6>
+                          <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
+                            Ko'proq o'qish
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                    ):''
                   );
                 })
               : ""}

@@ -22,7 +22,7 @@ export default class Navbar extends Component {
           <BrowserRouter>
             <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
               <Menu.Item key="rahbariyat" icon={<UserOutlined />}>
-                <Link exact to="/main/rahbariyat/:id" style={{ textDecoration: "none" }}>
+                <Link exact to="/main/rahbariyat/all" style={{ textDecoration: "none" }}>
                   Rahbariyat
                 </Link>
               </Menu.Item>
@@ -32,12 +32,12 @@ export default class Navbar extends Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="tadbirlar" icon={<BellOutlined />}>
-                <Link exact to="/main/tadbirlar/:id" style={{ textDecoration: "none" }}>
+                <Link exact to="/main/tadbirlar/all" style={{ textDecoration: "none" }}>
                   Tadbirlar
                 </Link>
               </Menu.Item>
               <Menu.Item key="alochilar" icon={<RocketOutlined />}>
-                <Link exact to="/main/alochilar/:id" style={{ textDecoration: "none" }}>
+                <Link exact to="/main/alochilar/all" style={{ textDecoration: "none" }}>
                   Alochilar
                 </Link>
               </Menu.Item>

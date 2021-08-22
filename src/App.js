@@ -3,6 +3,7 @@ import './App.css'
 import Main from './pages/Main'
 import Verify from './pages/Verify'
 import Login from './pages/Login'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 export default class App extends Component {
   render() {
     return (
@@ -16,7 +17,7 @@ export default class App extends Component {
 <Verify/>
         </Route>
         
-        <Route exact path="/main">
+        <Route path="/main">
 <Main/>
         </Route>
       </Switch>

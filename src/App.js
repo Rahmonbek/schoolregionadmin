@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import Verify from "./pages/Verify";
 import Login from "./pages/Login";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Navbar from "./pages/Navbar";
 export default class App extends Component {
   render() {
     return (
@@ -18,6 +19,7 @@ export default class App extends Component {
             </Route>
 
             <Route path="/main">
+             
               <Main />
             </Route>
           </Switch>

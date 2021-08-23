@@ -17,7 +17,7 @@ export default class App extends Component {
               <Verify />
             </Route>
 
-            <Route exact path="/main">
+            <Route path="/main">
               <Main />
             </Route>
           </Switch>

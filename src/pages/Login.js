@@ -68,7 +68,7 @@ export default class Login extends Component {
         </div>
       </div>
     ) : (
-      <Redirect to="/main" />
+      <Redirect to="/main/rahbariyat/all" />
     );
   }
 }

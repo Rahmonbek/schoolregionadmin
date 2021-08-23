@@ -32,6 +32,7 @@ export default class Main extends Component {
   };
   componentDidMount() {
     this.getSchoolsAll();
+   
   }
   render() {
     return GLOBAL.id !== null ? (
@@ -41,7 +42,7 @@ export default class Main extends Component {
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
               <Menu.Item onClick={() => this.getId(0)} key="0" icon={<PieChartOutlined />}>
-                <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
+<Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
               </Menu.Item>
               {this.state.maktab.map((item, key) => {
                 return (

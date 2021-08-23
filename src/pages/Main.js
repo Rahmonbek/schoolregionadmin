@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { PieChartOutlined } from "@ant-design/icons";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
-import Navbar from "./Navbar";
 import style from "../css/Navbar.module.css";
 import Yangilik from "./Yangilik";
 import Tadbirlar from "./Tadbirlar";
@@ -11,6 +10,8 @@ import Rahbariyat from "./Rahbariyat";
 import MaktabId from "./maktabId";
 import GLOBAL from "../host/Global";
 import Parol from "./Parol";
+import { UserOutlined, BookOutlined, RocketOutlined, BellOutlined } from "@ant-design/icons";
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,6 +20,7 @@ export default class Main extends Component {
     collapsed: false,
     maktab: [],
     maktabId: 0,
+    current: "rahbariyat",
   };
   getSchoolsAll = () => {
     getSchools().then((res) => this.setState({ maktab: res.data }));
@@ -31,13 +33,20 @@ export default class Main extends Component {
       maktabId: val,
     });
   };
+  handleClick = (e) => {
+    console.log("click ", e);
+    this.setState({ current: e.key });
+  };
+
   componentDidMount() {
     this.getSchoolsAll();
+    console.log(GLOBAL.id,GLOBAL.region)
    
   }
   render() {
     return GLOBAL.id !== null ? (
       <div>
+        <BrowserRouter>
         <Layout style={{ minHeight: "100vh" }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo" />
@@ -63,7 +72,6 @@ export default class Main extends Component {
             <Content style={{ margin: "0 16px" }}>
               <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
               <div className="site-layout-background" style={{ padding: 24, height: "540", overflowY: "auto", overflowX: "hidden" }}>
-                <BrowserRouter>
                   <Switch>
                     <Route exact path="/main/rahbariyat/:id">
                       <Rahbariyat />
@@ -81,7 +89,6 @@ export default class Main extends Component {
                       <Parol />
                     </Route>
                   </Switch>
-                </BrowserRouter>
 
                 <Footer style={{ textAlign: "center" }}>
                   Tizim IT Tower kompaniyasi tomonidan tayyorlandi.
@@ -100,10 +107,34 @@ export default class Main extends Component {
                   <h3>Barcha maktablar</h3>
                 </div>
               )}
+              <nav className={style.nvb}>
+            <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+              <Menu.Item key="rahbariyat" icon={<UserOutlined />}>
+                <Link exact to="/main/rahbariyat/all" style={{ textDecoration: "none" }}>
+                  Rahbariyat
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="yangiliklar" icon={<BookOutlined />}>
+                <Link style={{ textDecoration: "none" }} exact to="/main/yangiliklar/all">
+                  Yangiliklar
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="tadbirlar" icon={<BellOutlined />}>
+                <Link exact to="/main/tadbirlar/all" style={{ textDecoration: "none" }}>
+                  Tadbirlar
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="alochilar" icon={<RocketOutlined />}>
+                <Link exact to="/main/alochilar/all" style={{ textDecoration: "none" }}>
+                  Alochilar
+                </Link>
+              </Menu.Item>
+            </Menu>
+        </nav>
             </Content>
           </Layout>
         </Layout>
-        <Navbar />
+        </BrowserRouter>
       </div>
     ) : (
       <Redirect to="/" />

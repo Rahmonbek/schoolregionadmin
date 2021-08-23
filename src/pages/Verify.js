@@ -62,7 +62,7 @@ export default class Verify extends Component {
     axios
       .post(`${url}/login/`, formDataObj)
       .then((res) => {
-        this.setState({ id: res.data.id, info: true });
+        this.setState({ id: res.data.id, info: true, region: true });
         window.localStorage.setItem("token", res.data.token);
       })
       .catch((err) => {

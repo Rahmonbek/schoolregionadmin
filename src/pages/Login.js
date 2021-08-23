@@ -5,7 +5,7 @@ import style from "../css/Verify.module.css";
 import { url } from "../host/Host";
 import { message } from "antd";
 import GLOBAL from "../host/Global";
-import { Redirect } from "react-router-dom";
+import { Redirect ,Link} from "react-router-dom";
 import { getRegion } from "../host/Config";
 export default class Login extends Component {
   state = {
@@ -55,6 +55,7 @@ export default class Login extends Component {
               <Form.Control style={{ outline: "none" }} className={style.Forminput} type="password" name="password" required={true} />
               <Form.Label className={style.formLabel}>Parol</Form.Label>
             </Form.Group>
+            <Link to="/verify">Emailni tasdiqlash</Link>
             <Button className={style.sub} type="submit">
               <span></span>
               <span></span>
@@ -62,6 +63,7 @@ export default class Login extends Component {
               <span></span>
               Kirish
             </Button>
+            
           </Form>
         </div>
       </div>

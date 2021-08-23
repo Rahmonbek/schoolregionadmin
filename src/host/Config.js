@@ -51,7 +51,7 @@ export const getStaffs = () => {
 
 export const getStaff = () => {
   var config = {
-    url: `${url}/staff/${GLOBAL.id}`,
+    url: `${url}/staff/48`,
     method: "get",
   };
   return httpRequest(config);

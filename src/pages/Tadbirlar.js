@@ -5,24 +5,31 @@ import GLOBAL from "../host/Global";
 import { FaRegCalendarAlt, FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
+import { getSchools } from "../host/Config";
 
 export default class Tadbirlar extends Component {
   state = {
+    maktab:[],
     datas: [],
     data: {},
     show: false,
     id: window.location.href.slice(window.location.href.lastIndexOf("/") + 1),
   };
   getEvents = () => {
-    if (GLOBAL.id !== null)
-      getEvent()
-        .then((res) => this.setState({ datas: res.data }))
-        .catch(() => message.error("Ma'lumot yuklanmadi"));
-    else
       getEvents()
         .then((res) => this.setState({ datas: res.data }))
         .catch(() => message.error("Ma'lumot yuklanmadi"));
   };
+  getSchoolsAll = () => {
+    getSchools().then((res) => this.getSchool(res.data))
+    .catch(() => console.log("Ma'lumot yuklanmadi 2"));
+  };
+  getSchool=(val)=>{
+    console.log(val)
+    this.setState({
+      maktab:val
+    })
+  }
   showModal = (id) => {
     this.setState({ show: true, data: this.state.datas[id] });
   };
@@ -31,6 +38,8 @@ export default class Tadbirlar extends Component {
   };
   componentDidMount() {
     this.getEvents();
+    this.getSchoolsAll()
+
   }
   render() {
     return (
@@ -39,7 +48,8 @@ export default class Tadbirlar extends Component {
           <Row>
             {this.state.datas !== []
               ? this.state.datas.map((item, key) => {
-                  return parseInt(window.location.href.slice(window.location.href.lastIndexOf("/")+1))===parseInt(item.school)?(
+                  return(
+                   (parseInt(window.location.href.slice(window.location.href.lastIndexOf("/")+1))===parseInt(item.school))?(
                     <Col lg={3} md={4} sm={6} xs={12}>
                       <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
                         <Card.Img variant="top" src={item.image} style={{ width: "100%", height: "250px" }} />
@@ -74,13 +84,14 @@ export default class Tadbirlar extends Component {
                         </Card.Body>
                       </Card>
                     </Col>
-                  ):("");
+                  ):''
+                  )
                 })
               : ""}
 
 {this.state.datas !== []
               ? this.state.datas.map((item, key) => {
-                  return window.location.href.slice(window.location.href.lastIndexOf("/")+1) === "All"?(
+                  return window.location.href.slice(window.location.href.lastIndexOf("/")+1) === "all"?(
                     <Col lg={3} md={4} sm={6} xs={12}>
                       <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
                         <Card.Img variant="top" src={item.image} style={{ width: "100%", height: "250px" }} />

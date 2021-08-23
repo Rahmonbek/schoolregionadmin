@@ -204,7 +204,7 @@ export default class Verify extends Component {
         )}
       </div>
     ) : (
-      <Redirect to="/main" />
+      <Redirect to="/main/rahbariyat/all" />
     );
   }
 }

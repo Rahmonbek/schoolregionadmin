@@ -54,9 +54,6 @@ export default class Main extends Component {
               <Menu.Item onClick={() => this.getId(0)} key="0" icon={<PieChartOutlined />}>
 <Link style={{textDecoration:'none', color:'white'}}  to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
               </Menu.Item>
-              <Menu.Item onClick={() => this.getId(0)} key="-1" icon={<PieChartOutlined />}>
-<Link  style={{textDecoration:'none', color:'white'}} to={`/main/parol`}>Parol o'zgartirish</Link>
-              </Menu.Item>
               {this.state.maktab.map((item, key) => {
                 return (
                   <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key + 1} icon={<PieChartOutlined />}>
@@ -64,6 +61,10 @@ export default class Main extends Component {
                   </Menu.Item>
                 );
               })}
+              <Menu.Item onClick={() => this.getId(0)} key="-1" icon={<PieChartOutlined />}>
+<Link  style={{textDecoration:'none', color:'white'}} to={`/main/parol`}>Parol o'zgartirish</Link>
+              </Menu.Item>
+              
             </Menu>
           </Sider>
           <Layout className="site-layout">

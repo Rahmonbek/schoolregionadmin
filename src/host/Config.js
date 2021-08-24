@@ -16,6 +16,15 @@ export const getNew = () => {
   };
   return httpRequest(config);
 };
+
+export const getCourses = () => {
+  var config = {
+    url: `${url}/course/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+
 export const getPupil = () => {
   var config = {
     url: `${url}/pupil/`,

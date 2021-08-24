@@ -59,20 +59,8 @@ export default class Yangilik extends Component {
                                 <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
                                   <b>{item.title}</b>
                                 </h6>
-      
-                                <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                                  <span style={{ marginRight: "10px" }}>
-                                    <HiLocationMarker />
-                                  </span>
-                                  <span>{item2.school_number}-maktab</span>
-                                </div>
-                                <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                                  <span style={{ marginRight: "10px" }}>
-                                    <FaHistory />
-                                  </span>
-                                  <span>{item.published_time.slice(0,10)}</span>
-                                </div>
-                                {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
+                                  <p>{item2.school_number}-maktab</p>
+                                  <p>{item.published_time.slice(0,10)}</p>
                                 <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
                                   Batafsil
                                 </Button>

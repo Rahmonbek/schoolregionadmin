@@ -8,7 +8,7 @@ import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools,getExcellent,getClass,getPupil} from "../host/Config";
 import { httpRequest, url } from "../host/Host";
-import FadeLoader from "react-spinners/FadeLoader";
+import {FadeLoader} from "react-spinners/FadeLoader"
 import {FcBusinessman,FcBusinesswoman} from 'react-icons/fc'
 export default class Tadbirlar extends Component {
   state = {

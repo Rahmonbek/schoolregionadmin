@@ -9,10 +9,9 @@ import { message } from "antd";
 import { getSchools,getExcellent,getClass,getPupil} from "../host/Config";
 import { httpRequest, url } from "../host/Host";
 import FadeLoader from "react-spinners/FadeLoader";
-
+import {FcBusinessman,FcBusinesswoman} from 'react-icons/fc'
 export default class Tadbirlar extends Component {
   state = {
-loader:true,
       pupil:[],
       class:[],
     maktab:[],
@@ -22,13 +21,15 @@ loader:true,
     id: window.location.href.slice(window.location.href.lastIndexOf("/") + 1),
   };
   
-
+  
   getExcellents = () => {
       console.log(this.state.id)
+      localStorage.setItem('nextId',window.location.href.slice(window.location.href.lastIndexOf('/')+1))
     axios.get(`${url}/excellent/${window.location.href.slice(window.location.href.lastIndexOf('/')+1)}`)
     .then(res => {
         this.setState({
-            datas:res.data
+            datas:res.data,
+            loader:false
         })
     })
   };
@@ -36,6 +37,15 @@ loader:true,
     getSchools().then((res) => this.getSchool(res.data))
     .catch(() => console.log("Ma'lumot yuklanmadi 2"));
   };
+  getPupils = () => {
+    getPupil().then((res) => this.getPupilI(res.data))
+    .catch(() => console.log("Ma'lumot yuklanmadi 2"));
+  };
+  getPupilI=(val)=>{
+    this.setState({
+      pupil:val
+    })
+  }
   getSchool=(val)=>{
     this.setState({
       maktab:val
@@ -48,10 +58,13 @@ loader:true,
     this.setState({ show: false, data: {} });
   };
   componentDidUpdate(){
+    if(localStorage.getItem('nextId')!==window.location.href.slice(window.location.href.lastIndexOf('/')+1)){
      this.getExcellents()
-     
-   }
+    }
+  }
   componentDidMount() {
+    this.getPupils()
+    this.getExcellents()
     this.getSchoolsAll()
   }
   render() {
@@ -70,41 +83,56 @@ loader:true,
             {
                    this.state.datas.map((item2,key)=>{
                        return(
-                            // (parseInt(window.location.href.slice(window.location.href.lastIndexOf("/")+1))===48)?(
-                                <Col lg={3} md={4} sm={6} xs={12}>
-                                  <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
-                                    <Card.Img variant="top" src={item2.image} style={{ width: "100%", height: "250px" }} />
-                                    {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
-                                    <Card.Body>
-                                      <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
-                                        <b>{item2.pupil}</b>
-                                      </h6>
-            
-                                      <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                                        <span style={{ marginRight: "10px" }}>
-                                          <HiLocationMarker />
-                                        </span>
-                                        <span>{item2.address}</span>
-                                      </div>
-                                      <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                                        <span style={{ marginRight: "10px" }}>
-                                          <FaRegCalendarAlt />
-                                        </span>
-                                        <span>{item2.date}</span>
-                                      </div>
-                                      <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                                        <span style={{ marginRight: "10px" }}>
-                                          <FaHistory />
-                                        </span>
-                                        <span>{item2.time}</span>
-                                      </div>
-                                      {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
-                                      <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
-                                        Batafsil
-                                      </Button>
-                                    </Card.Body>
-                                  </Card>
-                                 </Col>
+                          
+                                this.state.pupil.map((item3,key)=>{
+                                  return(
+                                    item2.pupil==item3.id?(
+                                      <Col lg={3} md={4} sm={6} xs={12}>
+                                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
+                                        <Card.Img variant="top" src={item3.image} style={{ width: "100%", height: "250px" }} />
+                                        {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
+                                        <Card.Body>
+                                          <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
+                                            <b>{item3.full_name}</b>
+                                          </h6>
+                
+                                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <HiLocationMarker />
+                                            </span>
+                                            <span>{item3.clas}-sinf</span>
+                                          </div>
+                                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <FaRegCalendarAlt />
+                                            </span>
+                                            <span>Tug'ilgan sana: {item3.birth_day}</span>
+                                          </div>
+                                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <FcBusinessman />
+                                            </span>
+                                            <span style={{dipslay:'block'}}>Otasing F.I.O: {item3.father_name}</span>
+                                            <span style={{dipslay:'block'}}>{item3.father_tel}</span>
+                                          </div>
+                                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <FcBusinesswoman/>
+                                            </span>
+                                            <span style={{dipslay:'block'}}>Onasining F.I.O: {item3.mother_name}</span>
+                                            <span style={{dipslay:'block'}}>{item3.mother_tel}</span>
+                                          </div>
+                                        
+                                          {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
+                                          <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
+                                            Batafsil
+                                          </Button>
+                                        </Card.Body>
+                                      </Card>
+                                     </Col>
+                                    ):''
+                                  )
+                                })
                        )
                    })
                 }

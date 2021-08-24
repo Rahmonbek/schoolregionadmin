@@ -10,6 +10,8 @@ import Rahbariyat from "./Rahbariyat";
 import GLOBAL from "../host/Global";
 import Parol from "./Parol";
 import Alochilar from './Alochilar'
+import Togaraklar from './Togaraklar'
+import Yutuqlar from './Yutuqlar'
 import { UserOutlined, BookOutlined, RocketOutlined, BellOutlined } from "@ant-design/icons";
 
 
@@ -89,6 +91,12 @@ export default class Main extends Component {
                     <Route exact path="/main/parol">
                       <Parol />
                     </Route>
+                    <Route exact path="/main/togaraklar/:id">
+                      <Togaraklar />
+                    </Route>
+                    <Route exact path="/main/yutuqlar/:id">
+                      <Yutuqlar />
+                    </Route>
                   </Switch>
 
                 <Footer style={{ textAlign: "center" }}>
@@ -117,6 +125,16 @@ export default class Main extends Component {
               <Menu.Item key="tadbirlar" icon={<BellOutlined />}>
                 <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Tadbirlar
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="togaraklar" icon={<BellOutlined />}>
+                <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
+                  To'garaklar
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="yutuqlar" icon={<BellOutlined />}>
+                <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
+                  Yutuqlar
                 </Link>
               </Menu.Item>
               <Menu.Item key="alochilar" icon={<RocketOutlined />}>

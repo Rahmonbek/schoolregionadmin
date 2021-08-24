@@ -50,7 +50,7 @@ export default class Tadbirlar extends Component {
                   return(
                    (parseInt(window.location.href.slice(window.location.href.lastIndexOf("/")+1))===parseInt(item.school))?(
                     <Col lg={3} md={4} sm={6} xs={12}>
-                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "570px" }}>
+                      <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
                         <Card.Img variant="top" src={item.image} style={{ width: "100%", height: "250px" }} />
                         {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                         <Card.Body>

@@ -9,6 +9,13 @@ export const getNews = () => {
   return httpRequest(config);
 };
 
+export const getAchievment = () => {
+  var config = {
+    url: `${url}/achiviment/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
 export const getNew = () => {
   var config = {
     url: `${url}/new/${GLOBAL.id}`,
@@ -17,6 +24,35 @@ export const getNew = () => {
   return httpRequest(config);
 };
 
+export const getCourses = () => {
+  var config = {
+    url: `${url}/course/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+
+export const getPupil = () => {
+  var config = {
+    url: `${url}/pupil/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+export const getClass = () => {
+  var config = {
+    url: `${url}/class/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+export const getExcellent = () => {
+  var config = {
+    url: `${url}/excellent/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
 export const getEvents = () => {
   var config = {
     url: `${url}/event`,
@@ -51,7 +87,7 @@ export const getStaffs = () => {
 
 export const getStaff = () => {
   var config = {
-    url: `${url}/staff/48`,
+    url: `${url}/staff`,
     method: "get",
   };
   return httpRequest(config);

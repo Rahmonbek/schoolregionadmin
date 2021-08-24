@@ -6,7 +6,7 @@ import { FaRegCalendarAlt, FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
-
+import {BiTime} from 'react-icons/bi'
 export default class Tadbirlar extends Component {
   state = {
     maktab:[],
@@ -25,7 +25,6 @@ export default class Tadbirlar extends Component {
     .catch(() => console.log("Ma'lumot yuklanmadi 2"));
   };
   getSchool=(val)=>{
-    console.log(val)
     this.setState({
       maktab:val
     })
@@ -55,28 +54,30 @@ export default class Tadbirlar extends Component {
                         <Card.Img variant="top" src={item.image} style={{ width: "100%", height: "250px" }} />
                         {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                         <Card.Body>
-                          <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
+                          <h6 style={{  fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
                             <b>{item.title}</b>
                           </h6>
-
                           <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <HiLocationMarker />
-                            </span>
-                            <span>{item.address}</span>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <HiLocationMarker />
+                                            </span>
+                                            <span>{item.address}</span>
                           </div>
+                          
                           <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <FaRegCalendarAlt />
-                            </span>
-                            <span>{item.date}</span>
-                          </div>
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <FaHistory />
-                            </span>
-                            <span>{item.time}</span>
-                          </div>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <FaRegCalendarAlt/>
+                                            </span>
+                                            <span>{item.date}</span>
+                            </div>
+                            
+                            <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <BiTime/>
+                                            </span>
+                                            <span>{item.time}</span>
+                            </div>
+                        
                           {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
                           <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
                             Batafsil
@@ -97,28 +98,19 @@ export default class Tadbirlar extends Component {
                         <Card.Img variant="top" src={item.image} style={{ width: "100%", height: "250px" }} />
                         {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                         <Card.Body>
-                          <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
+                          <h6 style={{ fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
                             <b>{item.title}</b>
                           </h6>
 
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <HiLocationMarker />
-                            </span>
-                            <span>{item.address}</span>
-                          </div>
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <FaRegCalendarAlt />
-                            </span>
-                            <span>{item.date}</span>
-                          </div>
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <FaHistory />
-                            </span>
-                            <span>{item.time}</span>
-                          </div>
+                         
+                            <p>{item.address}</p>
+                         
+                         
+                            <p>{item.date}</p>
+                          
+                         
+                            <p>{item.time}</p>
+                       
                           {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
                           <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
                             Batafsil

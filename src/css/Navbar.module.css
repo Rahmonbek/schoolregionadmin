@@ -5,7 +5,7 @@
 .logo h3{font-size:20px; font-weight: bold;}
 .navbar{list-style:none; display:flex; flex-direction:row; align-items: center; height:64px;}
 .navbar li{margin-left: 40px; cursor: pointer}
-.nvb{position:absolute; top:0px; width:50%; right:20px;}
+.nvb{position:absolute; top:0px; width:60%; right:20px;}
 *{font-family: 'Noto Sans JP', sans-serif;}
 .link{text-decoration: none; color:black}
 .active{color:rgb(5, 5, 175); font-weight: bold;}

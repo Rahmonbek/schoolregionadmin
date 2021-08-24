@@ -3,7 +3,9 @@ import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { getStaff, getStaffs } from "../host/Config";
 import GLOBAL from "../host/Global";
 import { getSchools } from "../host/Config";
-
+import {BsPersonCheck} from 'react-icons/bs'
+import {FiPhone} from 'react-icons/fi'
+import {FaSchool} from 'react-icons/fa'
 export default class Rahbariyat extends Component {
     state = {
       maktab1:null,
@@ -59,10 +61,25 @@ export default class Rahbariyat extends Component {
                             <Card.Body>
                               <h6>
                                 <p>{item.full_name}</p>
-                                <p>{item.position }</p>
-                                <p>{item.phone}</p>
-                                <p>{item2.school_number}-maktab</p>
                               </h6>
+                              <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <BsPersonCheck style={{fontSize:'20px'}}/>
+                                              </span>
+                                              <span>{item.position}-maktab</span>
+                              </div>
+                              <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <FiPhone style={{fontSize:'20px'}}/>
+                                              </span>
+                                              <span>{item.phone}-maktab</span>
+                              </div>
+                              <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <FaSchool style={{fontSize:'20px'}}/>
+                                              </span>
+                                              <span>{item2.school_number}-maktab</span>
+                              </div>
                               <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
                                 Ko'proq o'qish
                               </Button>
@@ -88,10 +105,25 @@ export default class Rahbariyat extends Component {
                 <Card.Body>
                   <h6>
                     <p>{item2.full_name}</p>
-                    <p>{item2.position }</p>
-                    <p>{item2.phone}</p>
-                    <p>{this.state.s}-maktab</p>
                   </h6>
+                  <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <BsPersonCheck style={{fontSize:'20px'}}/>
+                                              </span>
+                                              <span>{item2.position}-maktab</span>
+                              </div>
+                              <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <FiPhone style={{fontSize:'20px'}}/>
+                                              </span>
+                                              <span>{item2.phone}-maktab</span>
+                              </div>
+                              <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <FaSchool style={{fontSize:'20px'}}/>
+                                              </span>
+                                              <span>{this.state.s}-maktab</span>
+                              </div>
                   <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
                     Ko'proq o'qish
                   </Button>

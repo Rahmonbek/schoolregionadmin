@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import style from "../css/Navbar.module.css";
 import Yangilik from "./Yangilik";
 import Tadbirlar from "./Tadbirlar";
-import { getSchools } from "../host/Config";
+import { getSchools,getRegion } from "../host/Config";
 import Rahbariyat from "./Rahbariyat";
 import GLOBAL from "../host/Global";
 import Parol from "./Parol";
@@ -13,7 +13,7 @@ import Alochilar from './Alochilar'
 import Togaraklar from './Togaraklar'
 import Yutuqlar from './Yutuqlar'
 import { UserOutlined, BookOutlined, RocketOutlined, BellOutlined } from "@ant-design/icons";
-
+import {FaSchool} from 'react-icons/fa'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -25,11 +25,16 @@ export default class Main extends Component {
     maktabId: 0,
     current: "rahbariyat",
     maktab1:null,
-    index:null
+    index:null,
+    region:[],
   };
   getSchoolsAll = () => {
     getSchools().then((res) => this.setState({ maktab: res.data,
-      oneId:res.data[0].id}));
+      oneId:res.data[0].id
+    }));
+  };
+  getRegions = () => {
+    getRegion().then((res) => this.setState({ region: res.data}));
   };
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
@@ -47,7 +52,9 @@ export default class Main extends Component {
   };
 
   componentDidMount() {
+    this.getRegions()
     this.getSchoolsAll()  
+    console.log(GLOBAL.id)
   }
   render() {
     return GLOBAL.id !== null ? (
@@ -59,8 +66,8 @@ export default class Main extends Component {
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
               {this.state.maktab.map((item, key) => {
                 return (
-                  <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key} icon={<PieChartOutlined />}>
-                    <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/${item.id}`}>{item.school_number}-maktab</Link>
+                  <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key} icon={<FaSchool />}>
+                    <Link style={{textDecoration:'none',color:'white'}} to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/${item.id}`}>{item.school_number}-maktab</Link>
                   </Menu.Item>
                 );
               })}
@@ -108,7 +115,15 @@ export default class Main extends Component {
                 </Footer>
               </div>
                 <div className={style.maktab}>
-                  <h3></h3>
+                  {
+                    this.state.region.map(item=>{
+                      return(
+                        (GLOBAL.id===item.admin)?(
+                          <h3>{item.region_name}</h3>
+                        ):''
+                      )
+                    })
+                  }
                 </div>
               <nav className={style.nvb}>
             <Menu  defaultSelectedKeys={['rahbariyat']} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">

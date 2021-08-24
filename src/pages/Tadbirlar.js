@@ -6,7 +6,7 @@ import { FaRegCalendarAlt, FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
-
+import {BiTime} from 'react-icons/bi'
 export default class Tadbirlar extends Component {
   state = {
     maktab:[],
@@ -57,15 +57,26 @@ export default class Tadbirlar extends Component {
                           <h6 style={{  fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
                             <b>{item.title}</b>
                           </h6>
-
+                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <HiLocationMarker />
+                                            </span>
+                                            <span>{item.address}</span>
+                          </div>
                           
-                            <p>{item.address}</p>
-                         
-                        
-                            <p>{item.date}</p>
-                         
-                          
-                            <p>{item.time}</p>
+                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <FaRegCalendarAlt/>
+                                            </span>
+                                            <span>{item.date}</span>
+                            </div>
+                            
+                            <div style={{ margin: "10px 0px", fontSize: "15px" }}>
+                                            <span style={{ marginRight: "10px" }}>
+                                              <BiTime/>
+                                            </span>
+                                            <span>{item.time}</span>
+                            </div>
                         
                           {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
                           <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>

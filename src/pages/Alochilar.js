@@ -89,7 +89,7 @@ export default class Tadbirlar extends Component {
                                     item2.pupil==item3.id?(
                                       <Col lg={3} md={4} sm={6} xs={12}>
                                       <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
-                                        <Card.Img variant="top" src={item3.image} style={{ width: "100%", height: "250px" }} />
+                                        <Card.Img variant="top" src={item3.image} style={{ width: "100%", height: "max-height" }} />
                                         {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                                         <Card.Body>
                                           <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>

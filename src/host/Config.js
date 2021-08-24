@@ -9,6 +9,13 @@ export const getNews = () => {
   return httpRequest(config);
 };
 
+export const getAchievment = () => {
+  var config = {
+    url: `${url}/achiviment/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
 export const getNew = () => {
   var config = {
     url: `${url}/new/${GLOBAL.id}`,

@@ -128,12 +128,12 @@ export default class Main extends Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="togaraklar" icon={<BellOutlined />}>
-                <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
+                <Link exact to={`/main/togaraklar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   To'garaklar
                 </Link>
               </Menu.Item>
               <Menu.Item key="yutuqlar" icon={<BellOutlined />}>
-                <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
+                <Link exact to={`/main/yutuqlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Yutuqlar
                 </Link>
               </Menu.Item>

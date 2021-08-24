@@ -6,7 +6,7 @@ import { FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
-
+import {BiTime} from 'react-icons/bi'
 export default class Yangilik extends Component {
   state = {
     maktab:[],
@@ -68,7 +68,7 @@ export default class Yangilik extends Component {
                                 </div>
                                 <div style={{ margin: "10px 0px", fontSize: "15px" }}>
                                   <span style={{ marginRight: "10px" }}>
-                                    <FaHistory />
+                                    <BiTime />
                                   </span>
                                   <span>{item.published_time.slice(0,10)}</span>
                                 </div>

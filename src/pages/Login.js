@@ -7,11 +7,14 @@ import { message } from "antd";
 import GLOBAL from "../host/Global";
 import { Redirect ,Link} from "react-router-dom";
 import { getRegion } from "../host/Config";
+import { getSchools } from "../host/Config";
+
 export default class Login extends Component {
   state = {
     login: false,
     id: null,
     regions: [],
+    oneId:null
   };
   getRegions = () => {
     getRegion().then((res) => this.setState({ regions: res.data }));
@@ -38,8 +41,17 @@ export default class Login extends Component {
         message.error("Login yoki parolni xato kiritdingiz. Iltimos tekshirib qaytatdan kiriting.");
       });
   };
+  getSchoolsAll = () => {
+    getSchools().then((res) => console.log(res.data))
+    .catch(() => console.log("Ma'lumot yuklanmadi 2"));
+  };
+  getSchool=(val)=>{
+    this.setState({
+      oneId:val
+    })
+  }
   componentDidMount() {
-    this.getRegions();
+    this.getRegions()
   }
   render() {
     return this.state.login === false ? (
@@ -68,7 +80,7 @@ export default class Login extends Component {
         </div>
       </div>
     ) : (
-      <Redirect to="/main/rahbariyat/all" />
+      <Redirect to={`/main/rahbariyat/0`} />
     );
   }
 }

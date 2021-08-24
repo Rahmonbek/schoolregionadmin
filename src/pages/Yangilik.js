@@ -25,7 +25,6 @@ export default class Yangilik extends Component {
     .catch(() => console.log("Ma'lumot yuklanmadi 2"));
   };
   getSchool=(val)=>{
-    console.log(val)
     this.setState({
       maktab:val
     })
@@ -71,7 +70,7 @@ export default class Yangilik extends Component {
                                   <span style={{ marginRight: "10px" }}>
                                     <FaHistory />
                                   </span>
-                                  <span>{item.published_time}</span>
+                                  <span>{item.published_time.slice(0,10)}</span>
                                 </div>
                                 {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
                                 <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>

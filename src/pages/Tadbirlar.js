@@ -25,7 +25,6 @@ export default class Tadbirlar extends Component {
     .catch(() => console.log("Ma'lumot yuklanmadi 2"));
   };
   getSchool=(val)=>{
-    console.log(val)
     this.setState({
       maktab:val
     })

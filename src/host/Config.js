@@ -16,7 +16,27 @@ export const getNew = () => {
   };
   return httpRequest(config);
 };
-
+export const getPupil = () => {
+  var config = {
+    url: `${url}/pupil/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+export const getClass = () => {
+  var config = {
+    url: `${url}/class/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
+export const getExcellent = () => {
+  var config = {
+    url: `${url}/excellent/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};
 export const getEvents = () => {
   var config = {
     url: `${url}/event`,
@@ -51,7 +71,7 @@ export const getStaffs = () => {
 
 export const getStaff = () => {
   var config = {
-    url: `${url}/staff/48`,
+    url: `${url}/staff`,
     method: "get",
   };
   return httpRequest(config);

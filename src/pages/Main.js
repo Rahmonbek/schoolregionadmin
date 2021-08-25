@@ -65,7 +65,7 @@ export default class Main extends Component {
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
 
-              <Menu.Item onClick={() => this.getId(0)} key="0" icon={<PieChartOutlined />}>
+              <Menu.Item onClick={() => this.getId(0)} key="-2" icon={<PieChartOutlined />}>
 <Link style={{textDecoration:'none', color:'white'}}  to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
               </Menu.Item>
 

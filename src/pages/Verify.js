@@ -62,7 +62,8 @@ export default class Verify extends Component {
     axios
       .post(`${url}/login/`, formDataObj)
       .then((res) => {
-        this.setState({ id: res.data.id, info: true, region: true });
+        console.log(res.data)
+        this.setState({ id: res.data.id, info: true, });
         window.localStorage.setItem("token", res.data.token);
       })
       .catch((err) => {
@@ -86,6 +87,7 @@ export default class Verify extends Component {
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
         GLOBAL.region = res.data.id;
+        this.setState({ region: true})
       })
       .catch((err) => {
         message.error("Ma'lumot kiritlmadi");
@@ -116,6 +118,7 @@ export default class Verify extends Component {
                   <option value="Toshkent shahri">Toshkent shahri</option>
                   <option value="Toshkent viloyati">Toshkent viloyati</option>
                   <option value="Buxoro viloyati">Buxoro viloyati</option>
+                  <option value="Samarqand viloyati">Samarqand viloyati</option>
                   <option value="Xorazm viloyati">Xorazm viloyati</option>
                   <option value="Andijon viloyati">Andijon viloyati</option>
                   <option value="Namangan viloyati">Namangan viloyati</option>

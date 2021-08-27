@@ -77,7 +77,7 @@ export default class Main extends Component {
                   </Menu.Item>
                 );
               })}
-              <Menu.Item onClick={() => this.getId(0)} key="-1" icon={<PieChartOutlined />}>
+              <Menu.Item key="-1" icon={<PieChartOutlined />}>
 <Link  style={{textDecoration:'none', color:'white'}} to={`/main/parol`}>Parol o'zgartirish</Link>
               </Menu.Item>
 

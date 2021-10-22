@@ -19,11 +19,13 @@ import {
   BellOutlined,
 } from "@ant-design/icons";
 import { FaSchool } from "react-icons/fa";
+import Loader from "./Loader";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class Main extends Component {
   state = {
+    loader:true,
     oneId: null,
     collapsed: false,
     maktab: [],
@@ -60,10 +62,16 @@ export default class Main extends Component {
     this.getRegions();
     this.getSchoolsAll();
     console.log(GLOBAL.id);
+    setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
   }
   render() {
     return GLOBAL.id !== null ? (
       <div>
+        {this.state.loader===true?(<Loader/>):(
         <BrowserRouter>
         <Layout style={{ minHeight: "100vh" }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
@@ -202,7 +210,7 @@ export default class Main extends Component {
         </nav>
             </Content>
           </Layout>
-        </BrowserRouter>
+        </BrowserRouter>)}
       </div>
     ) : (
       <Redirect to="/" />

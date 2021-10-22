@@ -7,10 +7,8 @@ import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools ,getAchievment,getPupil} from "../host/Config";
 import {IoMdTrophy} from 'react-icons/io'
-import Loader from "./Loader";
 export default class Yutuqlar extends Component {
   state = {
-    loader:true,
     pupil:[],
     maktab:[],
     datas: [],
@@ -51,15 +49,10 @@ export default class Yutuqlar extends Component {
       this.getPupils()
     this.getAchievments();
     this.getSchoolsAll()
-    setInterval(() => {
-      this.setState({
-        loader: false,
-      });
-    }, 3000);
   }
   render() {
     return (
-      <div>{this.state.loader===true?(<Loader/>):(
+      <div>
         <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -119,7 +112,7 @@ export default class Yutuqlar extends Component {
               : ""}
            
           </Row>
-        </Container>)}
+        </Container>
         <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">Yutuq: {this.state.data.competition}</Modal.Title>

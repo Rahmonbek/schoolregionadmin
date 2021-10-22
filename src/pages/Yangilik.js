@@ -6,7 +6,6 @@ import { FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
-<<<<<<< Updated upstream
 import { BiTime } from "react-icons/bi";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -16,14 +15,6 @@ import { CardActionArea, CardActions } from "@mui/material";
 export default class Yangilik extends Component {
   state = {
     maktab: [],
-=======
-import {BiTime} from 'react-icons/bi'
-import Loader from "./Loader";
-export default class Yangilik extends Component {
-  state = {
-    loader:true,
-    maktab:[],
->>>>>>> Stashed changes
     datas: [],
     data: {},
     show: false,
@@ -52,21 +43,11 @@ export default class Yangilik extends Component {
   };
   componentDidMount() {
     this.getNews();
-<<<<<<< Updated upstream
     this.getSchoolsAll();
-=======
-    this.getSchoolsAll()
-    setInterval(() => {
-      this.setState({
-        loader: false,
-      });
-    }, 3000);
->>>>>>> Stashed changes
   }
   render() {
     return (
       <div>
-        {this.state.loader===true?(<Loader/>):(
         <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -238,7 +219,6 @@ export default class Yangilik extends Component {
                 })
               : ""}
           </Row>
-<<<<<<< Updated upstream
         </Container>
         <Modal
           show={this.state.show}
@@ -246,10 +226,6 @@ export default class Yangilik extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
-=======
-        </Container>)}
-        <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
->>>>>>> Stashed changes
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
               Yangilik sarlavhasi: {this.state.data.title}

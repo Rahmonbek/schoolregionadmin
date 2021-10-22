@@ -9,6 +9,7 @@ import { getSchools, getRegion } from "../host/Config";
 import Rahbariyat from "./Rahbariyat";
 import GLOBAL from "../host/Global";
 import Parol from "./Parol";
+<<<<<<< Updated upstream
 import Alochilar from "./Alochilar";
 import Togaraklar from "./Togaraklar";
 import Yutuqlar from "./Yutuqlar";
@@ -19,12 +20,25 @@ import {
   BellOutlined,
 } from "@ant-design/icons";
 import { FaSchool } from "react-icons/fa";
+=======
+import Alochilar from './Alochilar'
+import Togaraklar from './Togaraklar'
+import Yutuqlar from './Yutuqlar'
+import { UserOutlined, BookOutlined, RocketOutlined, BellOutlined } from "@ant-design/icons";
+import {FaSchool} from 'react-icons/fa'
+import Loader from "./Loader";
+>>>>>>> Stashed changes
 
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class Main extends Component {
   state = {
+<<<<<<< Updated upstream
     oneId: null,
+=======
+    loader:true,
+    oneId:null,
+>>>>>>> Stashed changes
     collapsed: false,
     maktab: [],
     maktabId: 0,
@@ -34,8 +48,16 @@ export default class Main extends Component {
     region: [],
   };
   getSchoolsAll = () => {
+<<<<<<< Updated upstream
     getSchools().then((res) =>
       this.setState({ maktab: res.data, oneId: res.data[0].id })
+=======
+    getSchools().then((res) =>{ this.setState({ maktab: res.data,
+      oneId:res.data[0].id 
+    })
+}
+    
+>>>>>>> Stashed changes
     );
   };
   getRegions = () => {
@@ -56,13 +78,25 @@ export default class Main extends Component {
   };
 
   componentDidMount() {
+<<<<<<< Updated upstream
     this.getRegions();
     this.getSchoolsAll();
     console.log(GLOBAL.id);
+=======
+    this.getRegions()
+    this.getSchoolsAll()  
+    console.log(GLOBAL.id)
+     setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
+>>>>>>> Stashed changes
   }
   render() {
     return GLOBAL.id !== null ? (
-      <div>
+      <div>{
+        this.state.loader===true?(<Loader/>):(
         <BrowserRouter>
           <Layout style={{ minHeight: "100vh" }}>
             <Sider
@@ -244,7 +278,12 @@ export default class Main extends Component {
               </Footer>
             </Layout>
           </Layout>
+<<<<<<< Updated upstream
         </BrowserRouter>
+=======
+        </Layout>
+        </BrowserRouter>)}
+>>>>>>> Stashed changes
       </div>
     ) : (
       <Redirect to="/" />

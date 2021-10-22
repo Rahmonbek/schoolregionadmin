@@ -7,9 +7,11 @@ import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools ,getStaffs} from "../host/Config";
 import {FcBusinessman,FcBusinesswoman} from 'react-icons/fc'
+import Loader from "./Loader";
 
 export default class Togaraklar extends Component {
   state = {
+    loader:true,
     staf:[],
     maktab:[],
     datas: [],
@@ -55,10 +57,16 @@ export default class Togaraklar extends Component {
     this.getStaffS()
     this.getCourses();
     this.getSchoolsAll()
+    setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
   }
   render() {
     return (
       <div>
+        {this.state.loader===true?(<Loader/>):(
         <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -125,7 +133,7 @@ export default class Togaraklar extends Component {
             }):''
             }
           </Row>
-        </Container>
+        </Container>)}
         <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">To'garak sarlavhasi: {this.state.data.title}</Modal.Title>

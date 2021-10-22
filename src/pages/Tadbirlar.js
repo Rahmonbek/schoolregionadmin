@@ -6,6 +6,7 @@ import { FaRegCalendarAlt, FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
+<<<<<<< Updated upstream
 import { BiTime } from "react-icons/bi";
 
 import Card from "@mui/material/Card";
@@ -16,6 +17,14 @@ import { CardActionArea, CardActions } from "@mui/material";
 export default class Tadbirlar extends Component {
   state = {
     maktab: [],
+=======
+import {BiTime} from 'react-icons/bi'
+import Loader from "./Loader";
+export default class Tadbirlar extends Component {
+  state = {
+    loader:true,
+    maktab:[],
+>>>>>>> Stashed changes
     datas: [],
     data: {},
     show: false,
@@ -44,11 +53,21 @@ export default class Tadbirlar extends Component {
   };
   componentDidMount() {
     this.getEvents();
+<<<<<<< Updated upstream
     this.getSchoolsAll();
+=======
+    this.getSchoolsAll()
+    setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
+>>>>>>> Stashed changes
   }
   render() {
     return (
       <div>
+        {this.state.loader===true?(<Loader/>):(
         <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -222,6 +241,7 @@ export default class Tadbirlar extends Component {
                 })
               : ""}
           </Row>
+<<<<<<< Updated upstream
         </Container>
         <Modal
           show={this.state.show}
@@ -229,6 +249,10 @@ export default class Tadbirlar extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
+=======
+        </Container>)}
+        <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+>>>>>>> Stashed changes
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
               Tadbir sarlavhasi: <b>"{this.state.data.title}"</b>{" "}

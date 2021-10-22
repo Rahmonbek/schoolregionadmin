@@ -6,8 +6,10 @@ import { getSchools } from "../host/Config";
 import {BsPersonCheck} from 'react-icons/bs'
 import {FiPhone} from 'react-icons/fi'
 import {FaSchool} from 'react-icons/fa'
+import Loader from './Loader';
 export default class Rahbariyat extends Component {
     state = {
+      loader:true,
       maktab1:null,
         maktab:[],
         datas: [],
@@ -42,10 +44,16 @@ export default class Rahbariyat extends Component {
         this.getSchoolsAll();
         this.getStaffS();
         console.log(this.state.maktab,this.state.maktab1)
+        setInterval(() => {
+          this.setState({
+            loader: false,
+          });
+        }, 3000);
+      
       }
     render() {
         return (
-            <div>
+            <div> {this.state.loader==true?(<Loader/>):(
                 <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -139,7 +147,7 @@ export default class Rahbariyat extends Component {
                 
             
           </Row>
-        </Container>
+        </Container>)}
         <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">{this.state.data.full_name} haqida ma'lumot:</Modal.Title>

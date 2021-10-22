@@ -120,7 +120,16 @@ export default class Rahbariyat extends Component {
                               </Button>
                             </Card.Body>
                           </Card> */}
-                            <Card className={style.root}>
+                            <Card
+                              className={style.root}
+                              style={{
+                                // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                                // boxShadow:
+                                //   "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+                                boxShadow:
+                                  "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                              }}
+                            >
                               {item.image !== null ? (
                                 <CardMedia
                                   className={style.media}

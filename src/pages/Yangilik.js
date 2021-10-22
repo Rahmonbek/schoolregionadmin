@@ -70,7 +70,7 @@ export default class Yangilik extends Component {
                           )
                         ) === parseInt(item.school) ? (
                           <Col xl={3} lg={4} md={6} sm={10} xs={12} key={key}>
-                            <Card style={{ margin: "5px" }}>
+                            <Card style={{ margin: "5px", minHeight: "380px" }}>
                               <CardActionArea>
                                 <CardMedia
                                   component="img"

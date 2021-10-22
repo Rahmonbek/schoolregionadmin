@@ -5,7 +5,7 @@ import style from "../css/Verify.module.css";
 import { url } from "../host/Host";
 import { message } from "antd";
 import GLOBAL from "../host/Global";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 export default class Verify extends Component {
   state = {
     login: false,
@@ -16,7 +16,7 @@ export default class Verify extends Component {
     info: false,
     viloyat: [],
     tuman: null,
-    region: false,
+    dashbord: false,
   };
   login = (e) => {
     e.preventDefault();
@@ -62,8 +62,7 @@ export default class Verify extends Component {
     axios
       .post(`${url}/login/`, formDataObj)
       .then((res) => {
-        console.log(res.data)
-        this.setState({ id: res.data.id, info: true, });
+        this.setState({ id: res.data.id, info: true });
         window.localStorage.setItem("token", res.data.token);
       })
       .catch((err) => {
@@ -71,10 +70,26 @@ export default class Verify extends Component {
       });
   };
   onChange = (value) => {
+    console.log(value);
     this.setState({
       tuman: value,
     });
   };
+  componentDidMount() {
+    axios
+      .get(`${url}/region/`)
+      .then((res) => {
+        var a = res.data.sort(function (a, b) {
+          var textA = a.address;
+          var textB = b.address;
+          return textA < textB ? -1 : textA > textB ? 1 : 0;
+        });
+        this.setState({ viloyat: a });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   Maktab = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -95,7 +110,7 @@ export default class Verify extends Component {
   };
 
   render() {
-    return this.state.region === false ? (
+    return this.state.dashbord === false ? (
       <div className={style.formDiv}>
         {this.state.info ? (
           <div className={style.loginBox} style={{ width: "600px" }}>
@@ -207,7 +222,7 @@ export default class Verify extends Component {
         )}
       </div>
     ) : (
-      <Redirect to="/main/rahbariyat/all" />
-    );
+        <Redirect to="/main/rahbariyat/all" />
+      );
   }
 }

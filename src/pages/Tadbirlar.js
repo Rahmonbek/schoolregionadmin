@@ -6,9 +6,11 @@ import { FaRegCalendarAlt, FaHistory } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
-import {BiTime} from 'react-icons/bi'
+import {BiTime} from 'react-icons/bi';
+import Loader from './Loader'
 export default class Tadbirlar extends Component {
   state = {
+    loader:true,
     maktab:[],
     datas: [],
     data: {},
@@ -38,11 +40,16 @@ export default class Tadbirlar extends Component {
   componentDidMount() {
     this.getEvents();
     this.getSchoolsAll()
-
+    setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
   }
   render() {
     return (
       <div>
+        {this.state.loader===true?(<Loader/>):(
         <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -122,7 +129,7 @@ export default class Tadbirlar extends Component {
                 })
               : ""}
           </Row>
-        </Container>
+        </Container>)}
         <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">

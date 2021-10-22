@@ -57,6 +57,10 @@ export default class Main extends Component {
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
+            <Menu.Item onClick={() => this.getId(`all`)} key={-1} icon={<PieChartOutlined />}>
+                    <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
+                  </Menu.Item>
+               
               {this.state.maktab.map((item, key) => {
                 return (
                   <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key} icon={<PieChartOutlined />}>

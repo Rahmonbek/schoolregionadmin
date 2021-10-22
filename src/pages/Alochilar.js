@@ -12,6 +12,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 import {FcBusinessman,FcBusinesswoman, FcPhone} from 'react-icons/fc'
 
 import {FiBookmark} from 'react-icons/fi'
+import Loader from "./Loader";
 export default class Tadbirlar extends Component {
   state = {
       pupil:[],
@@ -31,7 +32,7 @@ export default class Tadbirlar extends Component {
     .then(res => {
         this.setState({
             datas:res.data,
-            loader:false
+            loader:true,
         })
     })
   };
@@ -78,18 +79,16 @@ export default class Tadbirlar extends Component {
     this.getPupils()
     this.getExcellents()
     this.getSchoolsAll()
+    setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
   }
   render() {
     return (
         <div>
-{
-    this.state.loader?<div className="loaderT">
-<FadeLoader
-
- color='blue' loading={this.state.loader} size={120} />        
-
-    </div>:
-      <div>
+{this.state.loader===true?(<Loader/>):(
         <Container fluid>
           <Row>
             {
@@ -162,9 +161,9 @@ export default class Tadbirlar extends Component {
                 }
           </Row>
         </Container>
-      
-      </div>
-  }
+      )}
+   
+  
   </div>
     );
   }

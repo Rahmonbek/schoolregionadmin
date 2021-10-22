@@ -17,6 +17,7 @@ import { BsPersonCheck } from "react-icons/bs";
 import { FiPhone } from "react-icons/fi";
 import { FaSchool } from "react-icons/fa";
 import style from "../css/xodim.module.css";
+import Loader from "./Loader";
 export default class Rahbariyat extends Component {
   state = {
     maktab1: null,
@@ -38,6 +39,7 @@ export default class Rahbariyat extends Component {
   };
   getSchool = (val) => {
     this.setState({
+      loader:true,
       maktab: val,
       maktab1: val[0].id,
       s: val[0].school_number,
@@ -53,11 +55,18 @@ export default class Rahbariyat extends Component {
   componentDidMount() {
     this.getSchoolsAll();
     this.getStaffS();
+  
     console.log(this.state.maktab, this.state.maktab1);
+    setInterval(() => {
+      this.setState({
+        loader: false,
+      });
+    }, 3000);
   }
   render() {
     return (
       <div>
+        {this.state.loader===true?(<Loader/>):(
         <Container fluid>
           <Row>
             {this.state.datas !== []
@@ -219,7 +228,7 @@ export default class Rahbariyat extends Component {
                 })
               : ""} */}
           </Row>
-        </Container>
+        </Container>)}
         <Modal
           show={this.state.show}
           size="lg"

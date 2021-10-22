@@ -1,3 +1,8 @@
+body{
+  width:100%;
+  overflow-x: hidden;
+
+}
 #components-layout-demo-side .logo {
   height: 32px;
   margin: 16px;

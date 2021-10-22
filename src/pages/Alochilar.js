@@ -9,7 +9,8 @@ import { message } from "antd";
 import { getSchools,getExcellent,getClass,getPupil} from "../host/Config";
 import { httpRequest, url } from "../host/Host";
 import FadeLoader from "react-spinners/FadeLoader";
-import {FcBusinessman,FcBusinesswoman} from 'react-icons/fc'
+import {FcBusinessman,FcBusinesswoman, FcPhone} from 'react-icons/fc'
+
 import {FiBookmark} from 'react-icons/fi'
 export default class Tadbirlar extends Component {
   state = {
@@ -103,7 +104,7 @@ export default class Tadbirlar extends Component {
                                       item2.pupil==item3.id?(
                                         (item4.id===item3.clas)?(
                                         <Col lg={3} md={4} sm={6} xs={12}>
-                                        <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "500px" }}>
+                                        <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "600px" }}>
                                           <Card.Img variant="top" src={item3.image} style={{ width: "100%", height: "max-height" }} />
                                           {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                                           <Card.Body>
@@ -127,15 +128,22 @@ export default class Tadbirlar extends Component {
                                               <span style={{ marginRight: "10px" }}>
                                                 <FcBusinessman />
                                               </span>
-                                              <span style={{dipslay:'block'}}>Otasing F.I.O: {item3.father_name}</span>
-                                              <span style={{dipslay:'block'}}>{item3.father_tel}</span>
+                                              <span style={{dipslay:'block'}}>Otasi: {item3.father_name}</span>
+                                              <br/>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <FcPhone />
+                                              </span>
+                                              <span style={{dipslay:'block'}}>Tel: {item3.father_tel}</span>
                                             </div>
                                             <div style={{ margin: "10px 0px", fontSize: "15px" }}>
                                               <span style={{ marginRight: "10px" }}>
                                                 <FcBusinesswoman/>
                                               </span>
-                                              <span style={{dipslay:'block'}}>Onasining F.I.O: {item3.mother_name}</span>
-                                              <span style={{dipslay:'block'}}>{item3.mother_tel}</span>
+                                              <span style={{dipslay:'block'}}>Onasi: {item3.mother_name}</span>
+                                              <br/>
+                                              <span style={{ marginRight: "10px" }}>
+                                                <FcPhone />
+                                              </span><span style={{dipslay:'block'}}>Tel: {item3.mother_tel}</span>
                                             </div>
                                           
                                             {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}

@@ -105,7 +105,7 @@ export default class Tadbirlar extends Component {
                                         (item4.id===item3.clas)?(
                                         <Col lg={3} md={4} sm={6} xs={12}>
                                         <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "600px" }}>
-                                          <Card.Img variant="top" src={item3.image} style={{ width: "100%", height: "max-height" }} />
+                                          <Card.Img variant="top" className="gimg" src={item3.image} style={{ width: "100%", height: "max-height" }} />
                                           {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
                                           <Card.Body>
                                             <h6 style={{ margin: "5px 0px 20px 0px", fontSize: "16px", borderBottom: "1px solid #ccc", height: "50px" }}>
@@ -118,6 +118,7 @@ export default class Tadbirlar extends Component {
                                               </span>
                                               <span>{item4.class_number}-"{item4.class_char}" sinf</span>
                                             </div>
+                                            
                                             <div style={{ margin: "10px 0px", fontSize: "15px" }}>
                                               <span style={{ marginRight: "10px" }}>
                                                 <FaRegCalendarAlt />
@@ -129,7 +130,7 @@ export default class Tadbirlar extends Component {
                                                 <FcBusinessman />
                                               </span>
                                               <span style={{dipslay:'block'}}>Otasi: {item3.father_name}</span>
-                                              <br/>
+                                              </div><div style={{ margin: "10px 0px", fontSize: "15px" }}>
                                               <span style={{ marginRight: "10px" }}>
                                                 <FcPhone />
                                               </span>
@@ -140,16 +141,13 @@ export default class Tadbirlar extends Component {
                                                 <FcBusinesswoman/>
                                               </span>
                                               <span style={{dipslay:'block'}}>Onasi: {item3.mother_name}</span>
-                                              <br/>
+                                              </div><div style={{ margin: "10px 0px", fontSize: "15px" }}>
                                               <span style={{ marginRight: "10px" }}>
                                                 <FcPhone />
                                               </span><span style={{dipslay:'block'}}>Tel: {item3.mother_tel}</span>
                                             </div>
                                           
-                                            {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
-                                            <Button onClick={() => this.showModal(key)} style={{ fontSize: "12px" }}>
-                                              Batafsil
-                                            </Button>
+                                         
                                           </Card.Body>
                                         </Card>
                                        </Col>
@@ -164,19 +162,7 @@ export default class Tadbirlar extends Component {
                 }
           </Row>
         </Container>
-        <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-          <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Tadbir sarlavhasi: <b>"{this.state.data.title}"</b>{" "}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Tadbir matni: {this.state.data.text}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => this.closeModal()}>Yopish</Button>
-          </Modal.Footer>
-        </Modal>
+      
       </div>
   }
   </div>

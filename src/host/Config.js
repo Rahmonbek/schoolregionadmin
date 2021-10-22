@@ -79,7 +79,7 @@ export const getSchools = () => {
 
 export const getStaffs = () => {
   var config = {
-    url: `${url}/staff`,
+    url: `${url}/staff/`,
     method: "get",
   };
   return httpRequest(config);

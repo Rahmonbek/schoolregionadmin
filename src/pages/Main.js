@@ -40,9 +40,10 @@ export default class Main extends Component {
     this.setState({ collapsed });
   };
   getId = (val) => {
+ 
     this.setState({
       maktabId: val,
-      maktab1:val[0].id,
+      maktab1:val[0]?val[0].id:0,
     });
 
   };
@@ -65,19 +66,19 @@ export default class Main extends Component {
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
 
-              <Menu.Item onClick={() => this.getId(0)} key="-2" icon={<PieChartOutlined />}>
+              <Menu.Item onClick={() => this.getId(0)} key="-2" icon={<PieChartOutlined style={{position:'relative', top:"-3px"}}/>}>
 <Link style={{textDecoration:'none', color:'white'}}  to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
               </Menu.Item>
 
 
               {this.state.maktab.map((item, key) => {
                 return (
-                  <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key} icon={<FaSchool />}>
+                  <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key} icon={<FaSchool style={{position:'relative', top:"-3px"}}/>}>
                     <Link style={{textDecoration:'none',color:'white'}} to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/${item.id}`}>{item.school_number}-maktab</Link>
                   </Menu.Item>
                 );
               })}
-              <Menu.Item key="-1" icon={<PieChartOutlined />}>
+              <Menu.Item key="-1" icon={<PieChartOutlined style={{position:'relative', top:"-3px"}}/>}>
 <Link  style={{textDecoration:'none', color:'white'}} to={`/main/parol`}>Parol o'zgartirish</Link>
               </Menu.Item>
 
@@ -108,9 +109,9 @@ export default class Main extends Component {
                     <Route exact path="/main/parol">
                       <Parol />
                     </Route>
-                    <Route exact path="/main/togaraklar/:id">
+                    {/* <Route exact path="/main/togaraklar/:id">
                       <Togaraklar />
-                    </Route>
+                    </Route> */}
                     <Route exact path="/main/yutuqlar/:id">
                       <Yutuqlar />
                     </Route>
@@ -137,32 +138,32 @@ export default class Main extends Component {
                 </div>
               <nav className={style.nvb}>
             <Menu  defaultSelectedKeys={['rahbariyat']} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-              <Menu.Item key="rahbariyat" icon={<UserOutlined />}>
+              <Menu.Item key="rahbariyat" icon={<UserOutlined style={{position:'relative', top:"-3px"}}/>}>
                 <Link exact to={`/main/rahbariyat/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Rahbariyat
                 </Link>
               </Menu.Item>
-              <Menu.Item key="yangiliklar" icon={<BookOutlined />}>
+              <Menu.Item key="yangiliklar" icon={<BookOutlined style={{position:'relative', top:"-3px"}}/>}>
                 <Link style={{ textDecoration: "none" }} exact to={`/main/yangiliklar/${this.state.oneId}`}>
                   Yangiliklar
                 </Link>
               </Menu.Item>
-              <Menu.Item key="tadbirlar" icon={<BellOutlined />}>
+              <Menu.Item key="tadbirlar" icon={<BellOutlined style={{position:'relative', top:"-3px"}}/>}>
                 <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Tadbirlar
                 </Link>
               </Menu.Item>
-              <Menu.Item key="togaraklar" icon={<BellOutlined />}>
+              {/* <Menu.Item key="togaraklar" icon={<BellOutlined style={{position:'relative', top:"-3px"}}/>}>
                 <Link exact to={`/main/togaraklar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   To'garaklar
                 </Link>
-              </Menu.Item>
-              <Menu.Item key="yutuqlar" icon={<BellOutlined />}>
+              </Menu.Item> */}
+              <Menu.Item key="yutuqlar" icon={<BellOutlined style={{position:'relative', top:"-3px"}}/>}>
                 <Link exact to={`/main/yutuqlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Yutuqlar
                 </Link>
               </Menu.Item>
-              <Menu.Item key="alochilar" icon={<RocketOutlined />}>
+              <Menu.Item key="alochilar" icon={<RocketOutlined style={{position:'relative', top:"-3px"}}/>}>
                 <Link refresh="true" exactexact to={`/main/alochilar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Alochilar
                 </Link>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 // import CardActions from "@material-ui/core/CardActions";
@@ -11,11 +10,7 @@ import Typography from "@material-ui/core/Typography";
 // import DeleteIcon from "@material-ui/icons/Delete";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import BorderColorIcon from "@material-ui/icons/BorderColor";
-import { getSchools, getStaff, getStaffs } from "../host/Config";
-import GLOBAL from "../host/Global";
-import { BsPersonCheck } from "react-icons/bs";
-import { FiPhone } from "react-icons/fi";
-import { FaSchool } from "react-icons/fa";
+import { getSchools, getStaffs } from "../host/Config";
 import style from "../css/xodim.module.css";
 import Loader from "./Loader";
 export default class Rahbariyat extends Component {
@@ -39,7 +34,7 @@ export default class Rahbariyat extends Component {
   };
   getSchool = (val) => {
     this.setState({
-      loader:true,
+      loader: true,
       maktab: val,
       maktab1: val[0].id,
       s: val[0].school_number,
@@ -55,7 +50,7 @@ export default class Rahbariyat extends Component {
   componentDidMount() {
     this.getSchoolsAll();
     this.getStaffS();
-  
+
     console.log(this.state.maktab, this.state.maktab1);
     setInterval(() => {
       this.setState({
@@ -66,20 +61,22 @@ export default class Rahbariyat extends Component {
   render() {
     return (
       <div>
-        {this.state.loader===true?(<Loader/>):(
-        <Container fluid>
-          <Row>
-            {this.state.datas !== []
-              ? this.state.datas.map((item, key) => {
-                  return this.state.maktab.map((item2) => {
-                    return parseInt(item2.id) === parseInt(item.school) ? (
-                      parseInt(
-                        window.location.href.slice(
-                          window.location.href.lastIndexOf("/") + 1
-                        )
-                      ) === parseInt(item.school) ? (
-                        <Col lg={3} md={4} sm={6} xs={12}>
-                          {/* <Card
+        {this.state.loader === true ? (
+          <Loader />
+        ) : (
+          <Container fluid>
+            <Row>
+              {this.state.datas !== []
+                ? this.state.datas.map((item, key) => {
+                    return this.state.maktab.map((item2) => {
+                      return parseInt(item2.id) === parseInt(item.school) ? (
+                        parseInt(
+                          window.location.href.slice(
+                            window.location.href.lastIndexOf("/") + 1
+                          )
+                        ) === parseInt(item.school) ? (
+                          <Col lg={3} md={4} sm={6} xs={12}>
+                            {/* <Card
                             style={{
                               margin: "10px auto",
                               borderRadius: "7px",
@@ -123,58 +120,58 @@ export default class Rahbariyat extends Component {
                               </Button>
                             </Card.Body>
                           </Card> */}
-                          <Card className={style.root}>
-                            {item.image !== null ? (
-                              <CardMedia
-                                className={style.media}
-                                image={item.image}
-                                title={item.full_name}
-                              />
-                            ) : (
-                              ""
-                            )}
-                            <CardContent>
-                              <Typography
-                                variant="body2"
-                                color="textDark"
-                                component="p"
-                              >
-                                <p>
-                                  <b>Xodim: </b>
-                                  {item.full_name}
-                                </p>
-                                <p>
-                                  <b>Mutaxassislik: </b>
-                                  {item.position}
-                                </p>
-                                <p>
-                                  <b>Telefon raqami: </b>
-                                  {item.phone}
-                                </p>
-                                <p>
-                                  <b>Maktab: </b>
-                                  {item2.school_number} - maktab
-                                </p>
-                                <Button
-                                  onClick={() => this.showModal(key)}
-                                  style={{ fontSize: "12px" }}
+                            <Card className={style.root}>
+                              {item.image !== null ? (
+                                <CardMedia
+                                  className={style.media}
+                                  image={item.image}
+                                  title={item.full_name}
+                                />
+                              ) : (
+                                ""
+                              )}
+                              <CardContent>
+                                <Typography
+                                  variant="body2"
+                                  color="textDark"
+                                  component="p"
                                 >
-                                  Ko'proq o'qish
-                                </Button>
-                              </Typography>
-                            </CardContent>
-                          </Card>
-                        </Col>
+                                  <p>
+                                    <b>Xodim: </b>
+                                    {item.full_name}
+                                  </p>
+                                  <p>
+                                    <b>Mutaxassislik: </b>
+                                    {item.position}
+                                  </p>
+                                  <p>
+                                    <b>Telefon raqami: </b>
+                                    {item.phone}
+                                  </p>
+                                  <p>
+                                    <b>Maktab: </b>
+                                    {item2.school_number} - maktab
+                                  </p>
+                                  <Button
+                                    onClick={() => this.showModal(key)}
+                                    style={{ fontSize: "12px" }}
+                                  >
+                                    Ko'proq o'qish
+                                  </Button>
+                                </Typography>
+                              </CardContent>
+                            </Card>
+                          </Col>
+                        ) : (
+                          ""
+                        )
                       ) : (
                         ""
-                      )
-                    ) : (
-                      ""
-                    );
-                  });
-                })
-              : ""}
-            {/* {parseInt(
+                      );
+                    });
+                  })
+                : ""}
+              {/* {parseInt(
               window.location.href.slice(
                 window.location.href.lastIndexOf("/") + 1
               )
@@ -227,8 +224,9 @@ export default class Rahbariyat extends Component {
                   );
                 })
               : ""} */}
-          </Row>
-        </Container>)}
+            </Row>
+          </Container>
+        )}
         <Modal
           show={this.state.show}
           size="lg"

@@ -100,3 +100,11 @@ export const getRegion = () => {
   };
   return httpRequest(config);
 };
+
+export const getSpec = () => {
+  var config = {
+    url: `${url}/spec/`,
+    method: "get",
+  };
+  return httpRequest(config);
+};

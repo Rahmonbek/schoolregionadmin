@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 // import DeleteIcon from "@material-ui/icons/Delete";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import BorderColorIcon from "@material-ui/icons/BorderColor";
-import { getSchools, getStaffs } from "../host/Config";
+import { getSchools, getSpec, getStaffs } from "../host/Config";
 import style from "../css/xodim.module.css";
 import Loader from "./Loader";
 export default class Rahbariyat extends Component {
@@ -39,7 +39,6 @@ export default class Rahbariyat extends Component {
       maktab1: val[0].id,
       s: val[0].school_number,
     });
-    
   };
   showModal = (id) => {
     this.setState({ show: true, data: this.state.datas[id] });
@@ -50,14 +49,29 @@ export default class Rahbariyat extends Component {
   componentDidMount() {
     this.getSchoolsAll();
     this.getStaffS();
-
-   
+    this.getSpec();
     setInterval(() => {
       this.setState({
         loader: false,
       });
     }, 3000);
   }
+  echoOptions = (a) => {
+    var g = "";
+    this.state.options.map((item) => {
+      if (item.id === a) {
+        g = item.name;
+      }
+    });
+    return g;
+  };
+  getSpec = () => {
+    getSpec()
+      .then((res) => {
+        this.setState({ options: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
   render() {
     return (
       <div>
@@ -76,7 +90,6 @@ export default class Rahbariyat extends Component {
                           )
                         ) === parseInt(item.school) ? (
                           <Col lg={4} md={6} sm={12} xs={12}>
-                           
                             <Card
                               className={style.root}
                               style={{
@@ -107,7 +120,7 @@ export default class Rahbariyat extends Component {
                                     {item.full_name}
                                   </p>
                                   <p>
-                                    <b>Mutaxassislik: </b>
+                                    <b>Lavozimi: </b>
                                     {item.position}
                                   </p>
                                   <p>
@@ -129,66 +142,67 @@ export default class Rahbariyat extends Component {
                             </Card>
                           </Col>
                         ) : parseInt(
-                          window.location.href.slice(
-                            window.location.href.lastIndexOf("/") + 1
-                          )
-                        )===-1?
-                        (
+                            window.location.href.slice(
+                              window.location.href.lastIndexOf("/") + 1
+                            )
+                          ) === -1 ? (
                           <Col lg={4} md={6} sm={12} xs={12}>
-                           
-                          <Card
-                            className={style.root}
-                            style={{
-                              // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                              // boxShadow:
-                              //   "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-                              boxShadow:
-                                "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
-                            }}
-                          >
-                            {item.image !== null ? (
-                              <CardMedia
-                                className={style.media}
-                                image={item.image}
-                                title={item.full_name}
-                              />
-                            ) : (
-                              ""
-                            )}
-                            <CardContent>
-                              <Typography
-                                variant="body2"
-                                color="textDark"
-                                component="p"
-                              >
-                                <p>
-                                  <b>Xodim: </b>
-                                  {item.full_name}
-                                </p>
-                                <p>
-                                  <b>Mutaxassislik: </b>
-                                  {item.position}
-                                </p>
-                                <p>
-                                  <b>Telefon raqami: </b>
-                                  {item.phone}
-                                </p>
-                                <p>
-                                  <b>Maktab: </b>
-                                  {item2.school_number} - maktab
-                                </p>
-                                <Button
-                                  onClick={() => this.showModal(key)}
-                                  style={{ fontSize: "12px" }}
+                            <Card
+                              className={style.root}
+                              style={{
+                                // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                                // boxShadow:
+                                //   "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+                                boxShadow:
+                                  "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                              }}
+                            >
+                              {item.image !== null ? (
+                                <CardMedia
+                                  className={style.media}
+                                  image={item.image}
+                                  title={item.full_name}
+                                />
+                              ) : (
+                                ""
+                              )}
+                              <CardContent>
+                                <Typography
+                                  variant="body2"
+                                  color="textDark"
+                                  component="p"
                                 >
-                                  Ko'proq o'qish
-                                </Button>
-                              </Typography>
-                            </CardContent>
-                          </Card>
-                        </Col>
-                      
-                        ):''
+                                  <p>
+                                    <b>Xodim: </b>
+                                    {item.full_name}
+                                  </p>
+                                  <p>
+                                    <b>Lavozimi: </b>
+                                    {item.speciality.map((item1) => {
+                                      return this.echoOptions(item1) + " ";
+                                    })}
+                                  </p>
+                                  <p>
+                                    <b>Telefon raqami: </b>
+                                    {item.phone}
+                                  </p>
+                                  <p>
+                                    <b>Maktab: </b>
+                                    {item2.school_number} - maktab
+                                  </p>
+                                  <Button
+                                    onClick={() => this.showModal(key)}
+                                    style={{ fontSize: "12px" }}
+                                  >
+                                    Ko'proq o'qish
+                                  </Button>
+                                </Typography>
+                              </CardContent>
+                            </Card>
+                          </Col>
+                        ) : (
+                          ""
+                        )
                       ) : (
                         ""
                       );

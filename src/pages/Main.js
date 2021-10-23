@@ -102,7 +102,7 @@ export default class Main extends Component {
                       <Yutuqlar />
                     </Route>
                   </Switch>
-
+                  <br/><br/><br/>
                 <Footer style={{ textAlign: "center" }}>
                   Tizim IT Tower kompaniyasi tomonidan tayyorlandi.
                   <br /> Murojat uchun:{" "}

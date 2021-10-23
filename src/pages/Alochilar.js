@@ -102,7 +102,7 @@ export default class Tadbirlar extends Component {
                                      
                                       item2.pupil==item3.id?(
                                         (item4.id===item3.clas)?(
-                                        <Col lg={3} md={4} sm={6} xs={12}>
+                                        <Col lg={4} md={6} sm={12} xs={12}>
                                         <Card style={{ margin: "10px auto", borderRadius: "7px", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", height: "600px" }}>
                                           <Card.Img variant="top" className="gimg" src={item3.image} style={{ width: "100%", height: "max-height" }} />
                                           {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
@@ -115,7 +115,7 @@ export default class Tadbirlar extends Component {
                                               <span style={{ marginRight: "10px" }}>
                                                 <FiBookmark />
                                               </span>
-                                              <span>{item4.class_number}-"{item4.class_char}" sinf</span>
+                                              <span>{item4.school}-maktab   {item4.class_number}-"{item4.class_char}" sinf</span>
                                             </div>
                                             
                                             <div style={{ margin: "10px 0px", fontSize: "15px" }}>

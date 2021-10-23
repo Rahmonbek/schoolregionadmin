@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { getEvents } from "../host/Config";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarAlt, FaSchool } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools } from "../host/Config";
@@ -35,6 +35,17 @@ export default class Tadbirlar extends Component {
     this.setState({
       maktab: val,
     });
+  };
+  getNumberSchool = (id) => {
+    var maktabNumber = "";
+    this.state.maktab.map((item) => {
+      if (id === item.id) {
+        if (item.school_number !== null)
+          maktabNumber = `${item.school_number} - maktab`;
+        else maktabNumber = `${item.school_name}`;
+      }
+    });
+    return maktabNumber;
   };
   showModal = (id) => {
     this.setState({ show: true, data: this.state.datas[id] });
@@ -92,6 +103,7 @@ export default class Tadbirlar extends Component {
                                   <span style={{ marginRight: "10px" }}>
                                     <HiLocationMarker />
                                   </span>
+                                  <span></span>
                                   <span>{item.address}</span>
                                 </div>
 
@@ -118,6 +130,23 @@ export default class Tadbirlar extends Component {
                                   </span>
                                   <span>{item.time}</span>
                                 </div>
+                                {this.getNumberSchool(item.school) !== "" ? (
+                                  <div
+                                    style={{
+                                      margin: "10px 0px",
+                                      fontSize: "15px",
+                                    }}
+                                  >
+                                    <span style={{ marginRight: "10px" }}>
+                                      <FaSchool />
+                                    </span>
+                                    <span>
+                                      {this.getNumberSchool(item.school)}
+                                    </span>
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
@@ -195,45 +224,86 @@ export default class Tadbirlar extends Component {
                       window.location.href.lastIndexOf("/") + 1
                     ) === "all" ? (
                       <Col xl={3} lg={4} md={6} sm={6} xs={12} key={key}>
-                        <Card
-                          style={{
-                            margin: "10px auto",
-                            borderRadius: "7px",
-                            boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                            height: "500px",
-                          }}
-                        >
-                          <Card.Img
-                            variant="top"
-                            src={item.image}
-                            style={{ width: "100%", height: "250px" }}
-                          />
-                          {/* <Card.Img variant="top" src="https://picsum.photos/50" /> */}
-                          <Card.Body>
-                            <h6
-                              style={{
-                                fontSize: "16px",
-                                borderBottom: "1px solid #ccc",
-                                height: "50px",
-                              }}
-                            >
-                              <b>{item.title}</b>
-                            </h6>
+                        <Card style={{ margin: "5px" }}>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              height="150"
+                              image={item.image}
+                              alt="green iguana"
+                            />
+                            <CardContent>
+                              <Typography gutterBottom variant="h7">
+                                {item.title}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                              >
+                                <div
+                                  style={{
+                                    margin: "10px 0px",
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  <span style={{ marginRight: "10px" }}>
+                                    <HiLocationMarker />
+                                  </span>
+                                  <span></span>
+                                  <span>{item.address}</span>
+                                </div>
 
-                            <p>{item.address}</p>
+                                <div
+                                  style={{
+                                    margin: "10px 0px",
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  <span style={{ marginRight: "10px" }}>
+                                    <FaRegCalendarAlt />
+                                  </span>
+                                  <span>{item.date}</span>
+                                </div>
 
-                            <p>{item.date}</p>
-
-                            <p>{item.time}</p>
-
-                            {/* <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p> */}
+                                <div
+                                  style={{
+                                    margin: "10px 0px",
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  <span style={{ marginRight: "10px" }}>
+                                    <BiTime />
+                                  </span>
+                                  <span>{item.time}</span>
+                                </div>
+                                {this.getNumberSchool(item.school) !== "" ? (
+                                  <div
+                                    style={{
+                                      margin: "10px 0px",
+                                      fontSize: "15px",
+                                    }}
+                                  >
+                                    <span style={{ marginRight: "10px" }}>
+                                      <FaSchool />
+                                    </span>
+                                    <span>
+                                      {this.getNumberSchool(item.school)}
+                                    </span>
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                              </Typography>
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions>
                             <Button
                               onClick={() => this.showModal(key)}
                               style={{ fontSize: "12px" }}
                             >
                               Batafsil
                             </Button>
-                          </Card.Body>
+                          </CardActions>
                         </Card>
                       </Col>
                     ) : (

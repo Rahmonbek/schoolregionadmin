@@ -15,6 +15,7 @@ import style from "../css/xodim.module.css";
 import Loader from "./Loader";
 export default class Rahbariyat extends Component {
   state = {
+    loader:true,
     maktab1: null,
     maktab: [],
     datas: [],
@@ -47,14 +48,14 @@ export default class Rahbariyat extends Component {
     this.setState({ show: false, data: {} });
   };
   componentDidMount() {
-    this.getSchoolsAll();
-    this.getStaffS();
-    this.getSpec();
     setInterval(() => {
       this.setState({
         loader: false,
       });
     }, 3000);
+    this.getSchoolsAll();
+    this.getStaffS();
+    this.getSpec();
   }
   echoOptions = (a) => {
     var g = "";

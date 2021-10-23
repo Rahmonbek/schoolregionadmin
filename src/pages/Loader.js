@@ -9,7 +9,7 @@ export default class Loader extends Component {
           top: "0px",
           left: "0px",
           zIndex: "34212323",
-          background: "radial-gradient(#9b59b6, #8e44ad)",
+          background: "#001529",
           width: "100vw",
           height: "100vh",
         }}

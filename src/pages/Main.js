@@ -19,6 +19,9 @@ import {
   BellOutlined,
 } from "@ant-design/icons";
 import Loader from "./Loader";
+import axios from "axios";
+import { url } from "../host/Host";
+import Global from "../host/Global";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -32,6 +35,7 @@ export default class Main extends Component {
     current: "rahbariyat",
     maktab1: null,
     index: null,
+    region:null
   };
   getSchoolsAll = () => {
     getSchools().then((res) =>
@@ -51,35 +55,43 @@ export default class Main extends Component {
     console.log("click ", e);
     this.setState({ current: e.key });
   };
-
+getReg=()=>{
+  
+  axios.get(`${url}/region/${Global.region}`).then(res=>{
+    this.setState({
+      region:res.data
+    })
+  })
+}
   componentDidMount() {
     this.getSchoolsAll();
+    this.getReg()
     setInterval(() => {
       this.setState({
         loader: false,
       });
-    }, 3000);
+    }, 3000)
   }
   render() {
     return GLOBAL.id !== null ? (
       <div>
         <BrowserRouter>
-        <Layout style={{ minHeight: "100vh" }}>
+        <Layout style={{ minHeight: "100vh", }} >
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={["-1"]} mode="inline">
+            <Menu theme="dark"  style={{position:'fixed', top:'0px',  width:this.state.collapsed?'80px':'200px'}}    defaultSelectedKeys={["-1"]} mode="inline">
             <Menu.Item onClick={() => this.getId(`-1`)} key={-1} icon={<PieChartOutlined />}>
-                    <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/-1`}>Hammasi</Link>
+                    <Link style={{textDecoration:'none'}} to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/-1`}>Hammasi</Link>
                   </Menu.Item>
                
               {this.state.maktab.map((item, key) => {
                 return (
                   <Menu.Item onClick={() => this.getId(`${item.school_number}`)} key={key} icon={<PieChartOutlined />}>
-                    <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/${item.id}`}>{item.school_number}-maktab</Link>
+                    <Link style={{textDecoration:'none'}} to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/${item.id}`}>{item.school_number}-maktab</Link>
                   </Menu.Item>
                 )})}
  <Menu.Item onClick={() => this.getId(`all`)} key={-2} icon={<PieChartOutlined />}>
-                    <Link to={`/parol`}>Parolni o'zgartirish</Link>
+                    <Link style={{textDecoration:'none'}} to={`/main/parol`}>Parolni o'zgartirish</Link>
                   </Menu.Item>
            
 </Menu>
@@ -87,7 +99,7 @@ export default class Main extends Component {
               <Layout className="site-layout">
                 <Header
                   className="site-layout-background"
-                  style={{ padding: 0 }}
+                  style={{ padding: 0, }}
                 />
 
             <Content style={{ margin: "0 16px" }}>
@@ -126,9 +138,10 @@ export default class Main extends Component {
                 </Footer>
               </div>
                 <div className={style.maktab}>
-                  <h3></h3>
+                  <h3>{this.state.region!==null?this.state.region.address:''} {this.state.region!==null?this.state.region.region_name:''} tumani xaql ta'limi bo'limi</h3>
                 </div>
               <nav className={style.nvb}>
+              
             <Menu  defaultSelectedKeys={['rahbariyat']} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
               <Menu.Item key="rahbariyat" icon={<UserOutlined />}>
                 <Link exact to={`/main/rahbariyat/${this.state.oneId}`} style={{ textDecoration: "none" }}>

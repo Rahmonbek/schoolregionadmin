@@ -3,11 +3,11 @@
 .logo h1{font-size:24px;}
 .logo{height:64px; display:flex; align-items:center; cursor:pointer}
 .logo h3{font-size:20px; font-weight: bold;}
-.navbar{list-style:none; display:flex; flex-direction:row; align-items: center; height:64px;}
+.navbar{list-style:none; display:flex; flex-direction:row; align-items: center; height:64px; position: fixed; top:0p}
 .navbar li{margin-left: 40px; cursor: pointer}
-.nvb{position:absolute; top:0px; width:60%; right:20px;}
+.nvb{position:absolute; top:0px; width:50%; right:20px; }
 *{font-family: 'Noto Sans JP', sans-serif;}
 .link{text-decoration: none; color:black}
 .active{color:rgb(5, 5, 175); font-weight: bold;}
-.maktab h3{font-size:20px; font-weight:bold}
-.maktab{position: absolute; cursor:pointer; height:64px; top:0px; left:20%; display:flex; align-items: center; font-weight: bold;}
+.maktab h3{font-size:18px; font-weight:bold}
+.maktab{position: absolute; cursor:pointer; height:64px; width:380px;  top:0px; left:20%; display:flex; align-items: center; font-weight: bold;}

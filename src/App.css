@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
 body{
   width:100%;
   overflow-x: hidden;
 
+}
+*{
+  font-family: 'Lato', sans-serif !important;
+  font-size:16px
 }
 #components-layout-demo-side .logo {
   height: 32px;

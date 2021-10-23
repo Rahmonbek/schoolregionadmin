@@ -9,7 +9,6 @@ export default class Parol extends Component {
         input:true
     }
     addLessonParol=(e)=>{
-        console.log(document.getElementById('pass').value)
           e.preventDefault();
           const formData = new FormData(e.target)
         formData.append('id', GLOBAL.user)

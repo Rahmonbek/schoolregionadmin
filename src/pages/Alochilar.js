@@ -31,11 +31,13 @@ export default class Tadbirlar extends Component {
       "nextId",
       window.location.href.slice(window.location.href.lastIndexOf("/") + 1)
     );
-    axios
+    if(Number(window.location.href.slice(
+      window.location.href.lastIndexOf("/") + 1
+    ))===-1){
+
+      axios
       .get(
-        `${url}/excellent/${window.location.href.slice(
-          window.location.href.lastIndexOf("/") + 1
-        )}`
+        `${url}/excellent`
       )
       .then((res) => {
         this.setState({
@@ -43,6 +45,21 @@ export default class Tadbirlar extends Component {
           loader: true,
         });
       });
+    }else{
+      
+    axios
+    .get(
+      `${url}/excellent/${window.location.href.slice(
+        window.location.href.lastIndexOf("/") + 1
+      )}`
+    )
+    .then((res) => {
+      this.setState({
+        datas: res.data,
+        loader: true,
+      });
+    });
+    }
   };
   getSchoolsAll = () => {
     getSchools()
@@ -80,6 +97,15 @@ export default class Tadbirlar extends Component {
   closeModal = () => {
     this.setState({ show: false, data: {} });
   };
+  echoSchool=(id)=>{
+    var g=null
+    this.state.maktab.map(item=>{
+      if(item.id===id){
+        g=item.school_number
+      }
+    })
+    return(g)
+  }
   componentDidUpdate() {
     if (
       localStorage.getItem("nextId") !==
@@ -147,7 +173,7 @@ export default class Tadbirlar extends Component {
                                   <FiBookmark />
                                 </span>
                                 <span>
-                                  {item4.school}-maktab {item4.class_number}-"
+                                  {this.echoSchool(item4.school)}-maktab {item4.class_number}-"
                                   {item4.class_char}" sinf
                                 </span>
                               </div>

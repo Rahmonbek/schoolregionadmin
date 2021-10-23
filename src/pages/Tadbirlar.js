@@ -72,7 +72,9 @@ export default class Tadbirlar extends Component {
             <Row>
               {this.state.datas !== []
                 ? this.state.datas.map((item, key) => {
-                    return parseInt(
+                  return this.state.maktab.map((item2) => {
+                    return parseInt(item2.id) === parseInt(item.school) ? (
+                   parseInt(
                       window.location.href.slice(
                         window.location.href.lastIndexOf("/") + 1
                       )
@@ -159,198 +161,100 @@ export default class Tadbirlar extends Component {
                             </Button>
                           </CardActions>
                         </Card>
-                        {/* <Card
-                        style={{
-                          margin: "10px auto",
-                          borderRadius: "7px",
-                          boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                          height: "500px",
-                        }}
-                      >
-                        <Card.Img
-                          variant="top"
-                          src={item.image}
-                          style={{ width: "100%", height: "250px" }}
-                        />{" "}
-                        <Card.Body>
-                          <h6
-                            style={{
-                              fontSize: "16px",
-                              borderBottom: "1px solid #ccc",
-                              height: "50px",
-                            }}
-                          >
-                            <b>{item.title}</b>
-                          </h6>
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <HiLocationMarker />
-                            </span>
-                            <span>{item.address}</span>
-                          </div>
+                      </Col>
+                    ) :parseInt(
+                      window.location.href.slice(
+                        window.location.href.lastIndexOf("/") + 1
+                      )
+                    ) ===-1? (
+                      <Col xl={3} lg={4} md={6} sm={10} xs={12} key={key}>
+                      <Card style={{ margin: "5px" }}>
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="150"
+                            image={item.image}
+                            alt="green iguana"
+                          />
+                          <CardContent>
+                            <Typography gutterBottom variant="h7">
+                              {item.title}
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              color="text.secondary"
+                            >
+                              <div
+                                style={{
+                                  margin: "10px 0px",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                <span style={{ marginRight: "10px" }}>
+                                  <HiLocationMarker />
+                                </span>
+                                <span></span>
+                                <span>{item.address}</span>
+                              </div>
 
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <FaRegCalendarAlt />
-                            </span>
-                            <span>{item.date}</span>
-                          </div>
+                              <div
+                                style={{
+                                  margin: "10px 0px",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                <span style={{ marginRight: "10px" }}>
+                                  <FaRegCalendarAlt />
+                                </span>
+                                <span>{item.date}</span>
+                              </div>
 
-                          <div style={{ margin: "10px 0px", fontSize: "15px" }}>
-                            <span style={{ marginRight: "10px" }}>
-                              <BiTime />
-                            </span>
-                            <span>{item.time}</span>
-                          </div>
-
+                              <div
+                                style={{
+                                  margin: "10px 0px",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                <span style={{ marginRight: "10px" }}>
+                                  <BiTime />
+                                </span>
+                                <span>{item.time}</span>
+                              </div>
+                              {this.getNumberSchool(item.school) !== "" ? (
+                                <div
+                                  style={{
+                                    margin: "10px 0px",
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  <span style={{ marginRight: "10px" }}>
+                                    <FaSchool />
+                                  </span>
+                                  <span>
+                                    {this.getNumberSchool(item.school)}
+                                  </span>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions>
                           <Button
                             onClick={() => this.showModal(key)}
                             style={{ fontSize: "12px" }}
                           >
                             Batafsil
                           </Button>
-                        </Card.Body>
-                      </Card> */}
-                      </Col>
-                    ) : (
-                      ""
-                    );
+                        </CardActions>
+                      </Card>
+                    </Col>
+                    ):''):('')
                   })
-                : ""}
+                }):( "")}
 
-              {this.state.datas !== []
-                ? this.state.datas.map((item, key) => {
-                    return window.location.href.slice(
-                      window.location.href.lastIndexOf("/") + 1
-                    ) === "all" ? (
-                      <Col xl={3} lg={4} md={6} sm={6} xs={12} key={key}>
-                        <Card style={{ margin: "5px" }}>
-                          <CardActionArea>
-                            <CardMedia
-                              component="img"
-                              height="150"
-                              image={item.image}
-                              alt="green iguana"
-                            />
-                            <CardContent>
-                              <Typography gutterBottom variant="h7">
-                                {item.title}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                <div
-                                  style={{
-                                    margin: "10px 0px",
-                                    fontSize: "15px",
-                                  }}
-                                >
-                                  <span style={{ marginRight: "10px" }}>
-                                    <HiLocationMarker />
-                                  </span>
-                                  <span></span>
-                                  <span>{item.address}</span>
-                                </div>
-
-                                <div
-                                  style={{
-                                    margin: "10px 0px",
-                                    fontSize: "15px",
-                                  }}
-                                >
-                                  <span style={{ marginRight: "10px" }}>
-                                    <FaRegCalendarAlt />
-                                  </span>
-                                  <span>{item.date}</span>
-                                </div>
-
-                                <div
-                                  style={{
-                                    margin: "10px 0px",
-                                    fontSize: "15px",
-                                  }}
-                                >
-                                  <span style={{ marginRight: "10px" }}>
-                                    <BiTime />
-                                  </span>
-                                  <span>{item.time}</span>
-                                </div>
-                                {this.getNumberSchool(item.school) !== "" ? (
-                                  <div
-                                    style={{
-                                      margin: "10px 0px",
-                                      fontSize: "15px",
-                                    }}
-                                  >
-                                    <span style={{ marginRight: "10px" }}>
-                                      <FaSchool />
-                                    </span>
-                                    <span>
-                                      {this.getNumberSchool(item.school)}
-                                    </span>
-                                  </div>
-                                ) : (
-                                  ""
-                                )}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                          <CardActions>
-                            <Button
-                              onClick={() => this.showModal(key)}
-                              style={{ fontSize: "12px" }}
-                            >
-                              Batafsil
-                            </Button>
-                          </CardActions>
-                        </Card>
-                        {/* <Card
-                          style={{
-                            margin: "10px auto",
-                            borderRadius: "7px",
-                            boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                            height: "500px",
-                          }}
-                        >
-                          <Card.Img
-                            variant="top"
-                            src={item.image}
-                            style={{ width: "100%", height: "250px" }}
-                          />
-                          <Card.Img variant="top" src="https://picsum.photos/50" />
-                          <Card.Body>
-                            <h6
-                              style={{
-                                fontSize: "16px",
-                                borderBottom: "1px solid #ccc",
-                                height: "50px",
-                              }}
-                            >
-                              <b>{item.title}</b>
-                            </h6>
-
-                            <p>{item.address}</p>
-
-                            <p>{item.date}</p>
-
-                            <p>{item.time}</p>
-
-                            <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{item.text}</p>
-                            <Button
-                              onClick={() => this.showModal(key)}
-                              style={{ fontSize: "12px" }}
-                            >
-                              Batafsil
-                            </Button>
-                          </Card.Body>
-                        </Card> */}
-                      </Col>
-                    ) : (
-                      ""
-                    );
-                  })
-                : ""}
+            
             </Row>
           </Container>
         )}

@@ -43,6 +43,7 @@ export default class Yutuqlar extends Component {
       .then((res) => this.getPupilI(res.data))
       .catch(() => console.log("Ma'lumot yuklanmadi 2"));
   };
+  
   getPupilI = (val) => {
     this.setState({
       pupil: val,
@@ -160,78 +161,91 @@ export default class Yutuqlar extends Component {
                                     </Button>
                                   </CardActions>
                                 </Card>
-
-                                {/* <Card
-                                  style={{
-                                    margin: "10px auto",
-                                    borderRadius: "7px",
-                                    boxShadow:
-                                      "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                                    minHeight: "500px",
-                                  }}
-                                >
-                                  <Card.Img
-                                    variant="top"
-                                    src={item.image}
-                                    style={{ width: "100%", height: "250px" }}
-                                  />
-                                  <Card.Body>
-                                    <h6
-                                      style={{
-                                        margin: "5px 0px 20px 0px",
-                                        fontSize: "16px",
-                                        borderBottom: "1px solid #ccc",
-                                        height: "50px",
-                                      }}
-                                    >
-                                      <b>{item.competition}</b>
-                                    </h6>
-
-                                    <div
-                                      style={{
-                                        margin: "10px 0px",
-                                        fontSize: "15px",
-                                      }}
-                                    >
-                                      <span style={{ marginRight: "10px" }}>
-                                        <HiLocationMarker />
-                                      </span>
-                                      <span>{item2.school_number}-maktab</span>
-                                    </div>
-                                    <div
-                                      style={{
-                                        margin: "10px 0px",
-                                        fontSize: "15px",
-                                      }}
-                                    >
-                                      <span style={{ marginRight: "10px" }}>
-                                        <IoMdTrophy />
-                                      </span>
-                                      <span>{item.result}</span>
-                                    </div>
-                                    <div
-                                      style={{
-                                        margin: "10px 0px",
-                                        fontSize: "15px",
-                                      }}
-                                    >
-                                      <span style={{ marginRight: "10px" }}>
-                                        <FaUserGraduate />
-                                      </span>
-                                      <span>{item3.full_name}</span>
-                                    </div>
-                                    <Button
-                                      onClick={() => this.showModal(key)}
-                                      style={{ fontSize: "12px" }}
-                                    >
-                                      Batafsil
-                                    </Button>
-                                  </Card.Body>
-                                </Card> */}
                               </Col>
-                            ) : (
-                              ""
-                            )
+                            ) : Number(
+                              window.location.href.slice(
+                                window.location.href.lastIndexOf("/") + 1
+                              )
+                            )===-1? (
+                              <Col xl={3} lg={4} md={6} sm={10} xs={12}>
+                              <Card
+                                style={{ margin: "5px", minHeight: "400px" }}
+                              >
+                                <CardActionArea>
+                                  <CardMedia
+                                    component="img"
+                                    height="250px"
+                                    image={item.image}
+                                    alt="green iguana"
+                                  />
+                                  <CardContent>
+                                    <Typography gutterBottom variant="h7">
+                                      {item.title}
+                                    </Typography>
+                                    <Typography
+                                      variant="body2"
+                                      color="text.secondary"
+                                    >
+                                      <h6
+                                        style={{
+                                          margin: "5px 0px 20px 0px",
+                                          fontSize: "16px",
+                                          borderBottom: "1px solid #ccc",
+                                          height: "50px",
+                                        }}
+                                      >
+                                        <b>{item.competition}</b>
+                                      </h6>
+
+                                      <div
+                                        style={{
+                                          margin: "10px 0px",
+                                          fontSize: "15px",
+                                        }}
+                                      >
+                                        <span style={{ marginRight: "10px" }}>
+                                          <HiLocationMarker />
+                                        </span>
+                                        <span>
+                                          {item2.school_number}-maktab
+                                        </span>
+                                      </div>
+                                      <div
+                                        style={{
+                                          margin: "10px 0px",
+                                          fontSize: "15px",
+                                        }}
+                                      >
+                                        <span style={{ marginRight: "10px" }}>
+                                          <IoMdTrophy />
+                                        </span>
+                                        <span>{item.result}</span>
+                                      </div>
+                                      <div
+                                        style={{
+                                          margin: "10px 0px",
+                                          fontSize: "15px",
+                                        }}
+                                      >
+                                        <span style={{ marginRight: "10px" }}>
+                                          <FaUserGraduate />
+                                        </span>
+                                        <span>{item3.full_name}</span>
+                                      </div>
+                                    </Typography>
+                                  </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                  <Button
+                                    onClick={() => this.showModal(key)}
+                                    style={{ fontSize: "12px" }}
+                                  >
+                                    Batafsil
+                                  </Button>
+                                </CardActions>
+                              </Card>
+                            </Col>
+                            ):("")
                           ) : (
                             ""
                           )

@@ -25,7 +25,7 @@ const { Header, Content, Footer, Sider } = Layout;
 export default class Main extends Component {
   state = {
     loader: true,
-    oneId: null,
+    oneId: -1,
     collapsed: false,
     maktab: [],
     maktabId: -1,
@@ -35,7 +35,7 @@ export default class Main extends Component {
   };
   getSchoolsAll = () => {
     getSchools().then((res) =>
-      this.setState({ maktab: res.data, oneId: res.data[0].id })
+      this.setState({ maktab: res.data })
     );
   };
   onCollapse = (collapsed) => {

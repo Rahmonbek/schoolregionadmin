@@ -123,9 +123,66 @@ export default class Yangilik extends Component {
                               </CardActions>
                             </Card>
                           </Col>
-                        ) : (
-                          ""
-                        )
+                        ) : parseInt(
+                          window.location.href.slice(
+                            window.location.href.lastIndexOf("/") + 1
+                          )
+                        )===-1? (
+                          <Col xl={3} lg={4} md={6} sm={10} xs={12} key={key}>
+                          <Card style={{ margin: "5px", minHeight: "380px" }}>
+                            <CardActionArea>
+                              <CardMedia
+                                component="img"
+                                height="150"
+                                image={item.image}
+                                alt="green iguana"
+                              />
+                              <CardContent>
+                                <Typography gutterBottom variant="h7">
+                                  {item.title}
+                                </Typography>
+                                <Typography
+                                  variant="body2"
+                                  color="text.secondary"
+                                >
+                                  <div
+                                    style={{
+                                      margin: "10px 0px",
+                                      fontSize: "15px",
+                                    }}
+                                  >
+                                    <span style={{ marginRight: "10px" }}>
+                                      <HiLocationMarker />
+                                    </span>
+                                    <span>{item2.school_number}-maktab</span>
+                                  </div>
+                                  <div
+                                    style={{
+                                      margin: "10px 0px",
+                                      fontSize: "15px",
+                                    }}
+                                  >
+                                    <span style={{ marginRight: "10px" }}>
+                                      <BiTime />
+                                    </span>
+                                    <span>
+                                      {item.published_time.slice(0, 10)}
+                                    </span>
+                                  </div>
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                              <Button
+                                onClick={() => this.showModal(key)}
+                                style={{ fontSize: "12px" }}
+                              >
+                                Batafsil
+                              </Button>
+                            </CardActions>
+                          </Card>
+                        </Col>
+                        ):("")
                       ) : (
                         ""
                       );

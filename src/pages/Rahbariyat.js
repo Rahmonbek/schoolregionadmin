@@ -15,7 +15,7 @@ import style from "../css/xodim.module.css";
 import Loader from "./Loader";
 export default class Rahbariyat extends Component {
   state = {
-    loader:true,
+    loader: true,
     maktab1: null,
     maktab: [],
     datas: [],
@@ -122,7 +122,9 @@ export default class Rahbariyat extends Component {
                                   </p>
                                   <p>
                                     <b>Lavozimi: </b>
-                                    {item.position}
+                                    {item.speciality.map((item1) => {
+                                      return this.echoOptions(item1) + " ";
+                                    })}
                                   </p>
                                   <p>
                                     <b>Telefon raqami: </b>

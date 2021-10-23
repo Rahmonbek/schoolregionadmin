@@ -63,7 +63,7 @@ export default class Main extends Component {
   render() {
     return GLOBAL.id !== null ? (
       <div>
-<<<<<<< HEAD
+
         <BrowserRouter>
         <Layout style={{ minHeight: "100vh" }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
@@ -119,7 +119,7 @@ export default class Main extends Component {
                     >
                       Parol o'zgartirish
                     </Link>
->>>>>>> c6dbf0c1326553c844464ea336fdf2eb195d232f
+
                   </Menu.Item>
                 </Menu>
               </Sider>
@@ -129,7 +129,7 @@ export default class Main extends Component {
                   style={{ padding: 0 }}
                 />
 
-<<<<<<< HEAD
+
             <Content style={{ margin: "0 16px" }}>
               <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
               <div className="site-layout-background" style={{ padding: 24, height: "540", overflowY: "auto", overflowX: "hidden" }}>
@@ -323,7 +323,7 @@ export default class Main extends Component {
             </Layout>
           </BrowserRouter>
         )}
->>>>>>> c6dbf0c1326553c844464ea336fdf2eb195d232f
+
       </div>
     ) : (
       <Redirect to="/" />

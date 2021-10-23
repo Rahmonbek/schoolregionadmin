@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { getNew, getNews } from "../host/Config";
-import GLOBAL from "../host/Global";
-import { FaHistory, FaUserGraduate } from "react-icons/fa";
+//simport { getNew, getNews } from "../host/Config";
+//import GLOBAL from "../host/Global";
+import { FaUserGraduate } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { message } from "antd";
 import { getSchools, getAchievment, getPupil } from "../host/Config";
@@ -83,14 +83,14 @@ export default class Yutuqlar extends Component {
                                 window.location.href.lastIndexOf("/") + 1
                               )
                             ) === parseInt(item.school) ? (
-                              <Col lg={3} md={4} sm={6} xs={12}>
+                              <Col xl={3} lg={4} md={6} sm={10} xs={12}>
                                 <Card
-                                  style={{ margin: "5px", minHeight: "500px" }}
+                                  style={{ margin: "5px", minHeight: "400px" }}
                                 >
                                   <CardActionArea>
                                     <CardMedia
                                       component="img"
-                                      height="300"
+                                      height="250px"
                                       image={item.image}
                                       alt="green iguana"
                                     />

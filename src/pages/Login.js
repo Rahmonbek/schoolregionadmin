@@ -80,7 +80,7 @@ export default class Login extends Component {
         </div>
       </div>
     ) : (
-      <Redirect to={`/main/rahbariyat/all`} />
+      <Redirect to={`/main/rahbariyat/-1`} />
     );
   }
 }

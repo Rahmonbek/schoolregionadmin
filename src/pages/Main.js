@@ -28,7 +28,7 @@ export default class Main extends Component {
     oneId: null,
     collapsed: false,
     maktab: [],
-    maktabId: 0,
+    maktabId: -1,
     current: "rahbariyat",
     maktab1: null,
     index: null,
@@ -67,9 +67,9 @@ export default class Main extends Component {
         <Layout style={{ minHeight: "100vh" }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
-            <Menu.Item onClick={() => this.getId(`all`)} key={-1} icon={<PieChartOutlined />}>
-                    <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/all`}>Hammasi</Link>
+            <Menu theme="dark" defaultSelectedKeys={["-1"]} mode="inline">
+            <Menu.Item onClick={() => this.getId(`-1`)} key={-1} icon={<PieChartOutlined />}>
+                    <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/-1`}>Hammasi</Link>
                   </Menu.Item>
                
               {this.state.maktab.map((item, key) => {
@@ -78,6 +78,10 @@ export default class Main extends Component {
                     <Link to={`/${window.location.href.slice(window.location.href.indexOf("main"), window.location.href.lastIndexOf("/"))}/${item.id}`}>{item.school_number}-maktab</Link>
                   </Menu.Item>
                 )})}
+ <Menu.Item onClick={() => this.getId(`all`)} key={-2} icon={<PieChartOutlined />}>
+                    <Link to={`/parol`}>Parolni o'zgartirish</Link>
+                  </Menu.Item>
+           
 </Menu>
               </Sider>
               <Layout className="site-layout">
@@ -105,9 +109,9 @@ export default class Main extends Component {
                     <Route exact path="/main/parol">
                       <Parol />
                     </Route>
-                    <Route exact path="/main/togaraklar/:id">
+                    {/* <Route exact path="/main/togaraklar/:id">
                       <Togaraklar />
-                    </Route>
+                    </Route> */}
                     <Route exact path="/main/yutuqlar/:id">
                       <Yutuqlar />
                     </Route>
@@ -141,13 +145,13 @@ export default class Main extends Component {
                   Tadbirlar
                 </Link>
               </Menu.Item>
-              <Menu.Item key="togaraklar" icon={<BellOutlined />}>
+              {/* <Menu.Item key="togaraklar" icon={<BellOutlined />}>
                 <Link exact to={`/main/togaraklar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   To'garaklar
                 </Link>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item key="yutuqlar" icon={<BellOutlined />}>
-                <Link exact to={`/main/tadbirlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
+                <Link exact to={`/main/yutuqlar/${this.state.oneId}`} style={{ textDecoration: "none" }}>
                   Yutuqlar
                 </Link>
               </Menu.Item>

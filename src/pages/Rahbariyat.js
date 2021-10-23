@@ -39,7 +39,7 @@ export default class Rahbariyat extends Component {
       maktab1: val[0].id,
       s: val[0].school_number,
     });
-    console.log(val[0].id, this.state.maktab1);
+    
   };
   showModal = (id) => {
     this.setState({ show: true, data: this.state.datas[id] });
@@ -51,7 +51,7 @@ export default class Rahbariyat extends Component {
     this.getSchoolsAll();
     this.getStaffS();
 
-    console.log(this.state.maktab, this.state.maktab1);
+   
     setInterval(() => {
       this.setState({
         loader: false,
@@ -75,51 +75,8 @@ export default class Rahbariyat extends Component {
                             window.location.href.lastIndexOf("/") + 1
                           )
                         ) === parseInt(item.school) ? (
-                          <Col lg={3} md={4} sm={6} xs={12}>
-                            {/* <Card
-                            style={{
-                              margin: "10px auto",
-                              borderRadius: "7px",
-                              boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                            }}
-                          >
-                            <Card.Img variant="top" src={item.image} />
-                            <Card.Body>
-                              <h6>
-                                <p>{item.full_name}</p>
-                              </h6>
-                              <div
-                                style={{ margin: "10px 0px", fontSize: "15px" }}
-                              >
-                                <span style={{ marginRight: "10px" }}>
-                                  <BsPersonCheck style={{ fontSize: "20px" }} />
-                                </span>
-                                <span>{item.position}-maktab</span>
-                              </div>
-                              <div
-                                style={{ margin: "10px 0px", fontSize: "15px" }}
-                              >
-                                <span style={{ marginRight: "10px" }}>
-                                  <FiPhone style={{ fontSize: "20px" }} />
-                                </span>
-                                <span>{item.phone}-maktab</span>
-                              </div>
-                              <div
-                                style={{ margin: "10px 0px", fontSize: "15px" }}
-                              >
-                                <span style={{ marginRight: "10px" }}>
-                                  <FaSchool style={{ fontSize: "20px" }} />
-                                </span>
-                                <span>{item2.school_number}-maktab</span>
-                              </div>
-                              <Button
-                                onClick={() => this.showModal(key)}
-                                style={{ fontSize: "12px" }}
-                              >
-                                Ko'proq o'qish
-                              </Button>
-                            </Card.Body>
-                          </Card> */}
+                          <Col lg={4} md={6} sm={12} xs={12}>
+                           
                             <Card
                               className={style.root}
                               style={{
@@ -171,9 +128,67 @@ export default class Rahbariyat extends Component {
                               </CardContent>
                             </Card>
                           </Col>
-                        ) : (
-                          ""
-                        )
+                        ) : parseInt(
+                          window.location.href.slice(
+                            window.location.href.lastIndexOf("/") + 1
+                          )
+                        )===-1?
+                        (
+                          <Col lg={4} md={6} sm={12} xs={12}>
+                           
+                          <Card
+                            className={style.root}
+                            style={{
+                              // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                              // boxShadow:
+                              //   "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+                              boxShadow:
+                                "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                            }}
+                          >
+                            {item.image !== null ? (
+                              <CardMedia
+                                className={style.media}
+                                image={item.image}
+                                title={item.full_name}
+                              />
+                            ) : (
+                              ""
+                            )}
+                            <CardContent>
+                              <Typography
+                                variant="body2"
+                                color="textDark"
+                                component="p"
+                              >
+                                <p>
+                                  <b>Xodim: </b>
+                                  {item.full_name}
+                                </p>
+                                <p>
+                                  <b>Mutaxassislik: </b>
+                                  {item.position}
+                                </p>
+                                <p>
+                                  <b>Telefon raqami: </b>
+                                  {item.phone}
+                                </p>
+                                <p>
+                                  <b>Maktab: </b>
+                                  {item2.school_number} - maktab
+                                </p>
+                                <Button
+                                  onClick={() => this.showModal(key)}
+                                  style={{ fontSize: "12px" }}
+                                >
+                                  Ko'proq o'qish
+                                </Button>
+                              </Typography>
+                            </CardContent>
+                          </Card>
+                        </Col>
+                      
+                        ):''
                       ) : (
                         ""
                       );
@@ -188,7 +203,7 @@ export default class Rahbariyat extends Component {
               ? this.state.datas.map((item2, key) => {
                   return parseInt(this.state.maktab1) ===
                     parseInt(item2.school) ? (
-                    <Col lg={3} md={4} sm={6} xs={12}>
+                    <Col lg={4} md={6} sm={12} xs={12}>
                       <Card
                         style={{
                           margin: "10px auto",

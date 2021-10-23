@@ -222,7 +222,7 @@ export default class Verify extends Component {
         )}
       </div>
     ) : (
-        <Redirect to="/main/rahbariyat/all" />
+        <Redirect to="/main/rahbariyat/-1" />
       );
   }
 }
